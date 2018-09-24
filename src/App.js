@@ -4,6 +4,7 @@ import NavBar from './components/navBar';
 import WorkoutIndex from './components/workoutIndex';
 import MuscleIndex from './components/muscleIndex';
 import MuscleNew from './components/muscleNew';
+import MuscleEdit from './components/muscleEdit';
 import ExerciseIndex from './components/exerciseIndex';
 import HomePage from './components/homePage';
 
@@ -19,6 +20,7 @@ class App extends Component {
             <Route path="/workouts/index" component={WorkoutIndex} />
             <Route path="/muscles/index" component={MuscleIndex} />
             <Route path="/muscles/new" component={MuscleNew} />
+            <Route path="/muscles/:id/edit" component={MuscleEdit} />
             <Route path="/exercises/index" component={ExerciseIndex} />
             <Route path="/" component={HomePage} />
           </Switch>

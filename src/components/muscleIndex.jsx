@@ -43,10 +43,11 @@ class MuscleIndex extends Component {
           {this.state.muscles.map(muscle => (
             <li key={muscle._id} className="list-group-item">
               {muscle.name}
-              <button
+              <Link
+                to={muscle._id + "/edit"}
                 className="btn btn-info btn-sm">
                 Edit
-              </button>
+              </Link>
               <button
                 onClick={() => this.handleDelete(muscle)}
                 className="btn btn-danger btn-sm">
