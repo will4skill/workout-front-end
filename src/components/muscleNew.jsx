@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Joi from 'joi-browser';
-//import { saveMuscle } from '../services/muscleService.js';
+import { saveMuscle } from '../services/muscleService.js';
 
 class MuscleNew extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class MuscleNew extends Component {
   }
 
   schema = {
-    value: Joi.string().required().min(3).label('Muscle Name').email()
+    value: Joi.string().required().min(3).label('Muscle Name')
   };
 
   validate() {
@@ -46,7 +46,7 @@ class MuscleNew extends Component {
     this.setState({ value: event.target.value, errors });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
 
     const errors = this.validate();
@@ -56,7 +56,7 @@ class MuscleNew extends Component {
       return;
     }
 
-    // await saveMuscle(this.state.value)
+    await saveMuscle(this.state.value);
     this.props.history.push('/muscles/index');
   }
 
