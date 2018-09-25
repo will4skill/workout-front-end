@@ -6,6 +6,8 @@ import MuscleIndex from './components/muscleIndex';
 import MuscleNew from './components/muscleNew';
 import MuscleEdit from './components/muscleEdit';
 import ExerciseIndex from './components/exerciseIndex';
+import ExerciseNew from './components/exerciseNew';
+import ExerciseEdit from './components/exerciseEdit';
 import HomePage from './components/homePage';
 
 import './App.css';
@@ -22,6 +24,8 @@ class App extends Component {
             <Route path="/muscles/new" component={MuscleNew} />
             <Route path="/muscles/:id/edit" component={MuscleEdit} />
             <Route path="/exercises/index" component={ExerciseIndex} />
+            <Route path="/exercises/new" component={ExerciseNew} />
+            <Route path="/exercises/:id/edit" component={ExerciseEdit} />
             <Route path="/" component={HomePage} />
           </Switch>
         </main>
