@@ -6,7 +6,7 @@ class MuscleNew extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
+      value: "",
       errors: {}
     };
 
@@ -50,7 +50,6 @@ class MuscleNew extends Component {
     event.preventDefault();
 
     const errors = this.validate();
-    console.log(errors);
     this.setState({ errors: errors || {} });
     if (errors) {
       return;
