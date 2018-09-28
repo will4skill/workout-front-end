@@ -46,7 +46,11 @@ class UserShow extends Component {
         <ul className="list-group">
           {this.state.workouts.map(workout => (
             <li key={workout._id} className="list-group-item">
-              {workout.date} ||| user_id: {workout.user_id}
+              <Link to={"/workouts/" + workout._id + "/show"}>
+                id: {workout._id}
+              </Link> |
+              {workout.date} |
+                ex count: {workout.exercises.length}
               <Link
                 to={"/workouts/" + workout._id + "/edit"}
                 className="btn btn-info btn-sm">

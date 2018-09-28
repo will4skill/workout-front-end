@@ -8,6 +8,9 @@ import UserShow from './components/userShow';
 import WorkoutIndex from './components/workoutIndex';
 import WorkoutNew from './components/workoutNew';
 import WorkoutEdit from './components/workoutEdit';
+import WorkoutShow from './components/workoutShow';
+import CompletedExerciseNew from './components/completedExerciseNew';
+import CompletedExerciseEdit from './components/completedExerciseEdit';
 import MuscleIndex from './components/muscleIndex';
 import MuscleNew from './components/muscleNew';
 import MuscleEdit from './components/muscleEdit';
@@ -32,6 +35,15 @@ class App extends Component {
             <Route path="/workouts/index" component={WorkoutIndex} />
             <Route path="/workouts/new" component={WorkoutNew} />
             <Route path="/workouts/:id/edit" component={WorkoutEdit} />
+            <Route path="/workouts/:id/show" component={WorkoutShow} />
+            <Route
+              path="/workouts/:id/completed_exercise/"
+              component={CompletedExerciseNew}
+            />
+            <Route
+              path="/completed_exercise/:id/edit"
+              component={CompletedExerciseEdit}
+            />
             <Route path="/muscles/index" component={MuscleIndex} />
             <Route path="/muscles/new" component={MuscleNew} />
             <Route path="/muscles/:id/edit" component={MuscleEdit} />
