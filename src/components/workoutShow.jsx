@@ -8,18 +8,18 @@ class WorkoutShow extends Component {
     workout: {
       _id: "",
       date: "",
-      exercises: []
+      completed_exercises: []
     }
   };
+  workout_id = this.props.match.params.id;
 
   async componentDidMount() {
-    const workout_id = this.props.match.params.id;
     try {
-      const { data } = await getWorkout(workout_id);
+      const { data } = await getWorkout(this.workout_id);
       const workout = {
         _id: data._id,
         date: data.date,
-        exercises: data.exercises
+        completed_exercises: data.exercises
       };
 
       this.setState({ workout });
@@ -30,23 +30,23 @@ class WorkoutShow extends Component {
     }
   }
 
-  async handleDelete(selected_exercise) {
-    const old_exercises = this.state.workout.exercises;
-    const new_exercises = old_exercises.filter(exercise => {
-      return exercise._id !== selected_exercise._id;
+  async handleDelete(selected_completed_exercise) {
+    const old_completed_exercises = this.state.workout.completed_exercises;
+    const new_completed_exercises = old_completed_exercises.filter(completed_exercise => {
+      return completed_exercise._id !== selected_completed_exercise._id;
     });
 
     const workout = { ...this.state.workout };
-    workout.exercises = new_exercises;
+    workout.completed_exercises = new_completed_exercises;
     this.setState({ workout });
 
     try {
-      await deleteCompletedExercise(selected_exercise._id);
+      await deleteCompletedExercise(selected_completed_exercise._id);
     } catch (exception) {
       if (exception.response && exception.response.status === 404) {
         alert("This exercise has already been deleted.");
       }
-      workout.exercises = old_exercises
+      workout.completed_exercises = old_completed_exercises
       this.setState({ workout });
     }
   }
@@ -54,26 +54,26 @@ class WorkoutShow extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1>Workout ID: {this.state.workout._id}</h1>
+        <h1>Workout ID: {this.workout_id}</h1>
         <Link
-          to={"/workouts/" + this.props.match.params.id + "/completed_exercise/new"}
+          to={"/workouts/" + this.workout_id + "/completed_exercise/new"}
           className="btn btn-primary">
           New Exercise
         </Link>
         <ul className="list-group">
-          {this.state.workout.exercises.map(exercise => (
-            <li key={exercise._id} className="list-group-item">
-              {exercise.exercise_id.name} ||
-              Sets: {exercise.sets} ||
-              Reps: {exercise.reps} ||
-              Load: {exercise.load}
+          {this.state.workout.completed_exercises.map(completed_exercise => (
+            <li key={completed_exercise._id} className="list-group-item">
+              {completed_exercise.exercise_id.name} ||
+              Sets: {completed_exercise.sets} ||
+              Reps: {completed_exercise.reps} ||
+              Load: {completed_exercise.load}
               <Link
-                to={"/completed_exercise/" + exercise._id + "/edit"}
+                to={"/completed_exercise/" + completed_exercise._id + "/edit"}
                 className="btn btn-info btn-sm">
                 Edit
               </Link>
               <button
-                onClick={() => this.handleDelete(exercise)}
+                onClick={() => this.handleDelete(completed_exercise)}
                 className="btn btn-danger btn-sm">
                 Delete
               </button>
