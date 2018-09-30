@@ -84,7 +84,7 @@ class UserNew extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label className="sr-only" htmlFor="inlineFormInputName">Name</label>
+            <label htmlFor="inlineFormInputName">Name</label>
             <input
               name="name"
               type="text"
@@ -96,7 +96,7 @@ class UserNew extends Component {
             {this.state.errors.name && <div className="alert alert-danger">{this.state.errors.name}</div>}
           </div>
           <div className="form-group">
-            <label className="sr-only" htmlFor="inlineFormInputPassword">Email</label>
+            <label htmlFor="inlineFormInputPassword">Email</label>
             <input
               name="email"
               type="text"
@@ -108,7 +108,7 @@ class UserNew extends Component {
             {this.state.errors.email && <div className="alert alert-danger">{this.state.errors.email}</div>}
           </div>
           <div className="form-group">
-            <label className="sr-only" htmlFor="inlineFormInputEmail">Password</label>
+            <label htmlFor="inlineFormInputEmail">Password</label>
             <input
               name="password"
               type="password"

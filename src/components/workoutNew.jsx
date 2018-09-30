@@ -73,7 +73,7 @@ class WorkoutNew extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label className="sr-only" htmlFor="inlineFormInputName">Name</label>
+            <label htmlFor="inlineFormInputName">Name</label>
             <input
               name="date"
               type="text"

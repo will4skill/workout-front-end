@@ -80,7 +80,7 @@ class ExerciseNew extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label className="sr-only" htmlFor="inlineFormInputName">Name</label>
+            <label htmlFor="inlineFormInputName">Name</label>
             <input
               name="name"
               type="text"
@@ -92,7 +92,7 @@ class ExerciseNew extends Component {
             {this.state.errors.name && <div className="alert alert-danger">{this.state.errors.name}</div>}
           </div>
           <div className="form-group">
-            <label className="input-group-text" htmlFor="inputGroupSelect01">Muscle</label>
+            <label htmlFor="inputGroupSelect01">Muscle</label>
             <select
               name="muscle_id"
               className="form-control"

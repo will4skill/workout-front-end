@@ -8,11 +8,11 @@ class CompletedExerciseNew extends Component {
     super(props);
     this.state = {
       completed_exercise: {
-        load: 0,
         exercise_id: "",
         exercise_type: "",
         sets: 0,
         reps: 0,
+        load: 0,
         unilateral: false,
         mum: false
       },
@@ -31,14 +31,14 @@ class CompletedExerciseNew extends Component {
   ];
 
   schema = {
-    unilateral: Joi.boolean().label("Unilateral"),
-    load: Joi.number().min(0).label("Added Load"),
-    mum: Joi.boolean().label("Made up missed reps"),
-    exercise_id: Joi.string().required().label("Exercise"),
     workout_id: Joi.string().required().label("Workout"),
+    exercise_id: Joi.string().required().label("Exercise"),
     exercise_type: Joi.string().label("Exercise Type"),
     sets: Joi.number().required().min(1).label("Sets"),
-    reps: Joi.number().required().min(1).label("Reps")
+    reps: Joi.number().required().min(1).label("Reps"),
+    load: Joi.number().min(0).label("Added Load"),
+    unilateral: Joi.boolean().label("Unilateral"),
+    mum: Joi.boolean().label("Made up missed reps")
   };
 
   async componentDidMount() {
@@ -104,6 +104,7 @@ class CompletedExerciseNew extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
+          <h3 className="">New Comp Ex</h3>
           <div className="form-group">
             <label htmlFor="inputGroupExerciseId">Exercise</label>
             <select

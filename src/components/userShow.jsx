@@ -41,7 +41,7 @@ class UserShow extends Component {
         </Link>
         <Link
           to="/users/me/edit" className="btn btn-info btn-sm">
-          Edit
+          Edit User
         </Link>
         <ul className="list-group">
           {this.state.workouts.map(workout => (

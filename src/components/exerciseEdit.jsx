@@ -96,7 +96,7 @@ class ExerciseEdit extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label className="sr-only" htmlFor="inlineFormInputName">Name</label>
+            <label htmlFor="inlineFormInputName">Name</label>
             <input
               name="name"
               type="text"
@@ -108,7 +108,7 @@ class ExerciseEdit extends Component {
             {this.state.errors.name && <div className="alert alert-danger">{this.state.errors.name}</div>}
           </div>
           <div className="form-group">
-            <label className="input-group-text" htmlFor="inputGroupSelect01">Muscle</label>
+            <label htmlFor="inputGroupSelect01">Muscle</label>
             <select
               value={this.state.exercise.muscle_id}
               name="muscle_id"
