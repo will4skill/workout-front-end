@@ -95,37 +95,40 @@ class ExerciseEdit extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="inlineFormInputName">Name</label>
-            <input
-              name="name"
-              type="text"
-              className="form-control"
-              id="inlineFormInputName"
-              value={this.state.exercise.name}
-              onChange={this.handleChange}
-            />
-            {this.state.errors.name && <div className="alert alert-danger">{this.state.errors.name}</div>}
+          <div>
+            <h4>Edit Exercise</h4>
+            <div className="form-group">
+              <label htmlFor="inlineFormInputName">Name</label>
+              <input
+                name="name"
+                type="text"
+                className="form-control"
+                id="inlineFormInputName"
+                value={this.state.exercise.name}
+                onChange={this.handleChange}
+              />
+              {this.state.errors.name && <div className="alert alert-danger">{this.state.errors.name}</div>}
+            </div>
+            <div className="form-group">
+              <label htmlFor="inputGroupSelect01">Muscle</label>
+              <select
+                value={this.state.exercise.muscle_id}
+                name="muscle_id"
+                className="form-control"
+                id="inputGroupSelect01"
+                onChange={this.handleChange}
+                >
+                <option value=""/>
+                {this.state.muscles.map(muscle => (
+                  <option key={muscle._id} value={muscle._id}>
+                    {muscle.name}
+                  </option>
+                ))}
+              </select>
+              {this.state.errors.muscle_id && <div className="alert alert-danger">{this.state.errors.muscle_id}</div>}
+            </div>
+            <button type="submit" className="btn btn-primary">Submit</button>
           </div>
-          <div className="form-group">
-            <label htmlFor="inputGroupSelect01">Muscle</label>
-            <select
-              value={this.state.exercise.muscle_id}
-              name="muscle_id"
-              className="form-control"
-              id="inputGroupSelect01"
-              onChange={this.handleChange}
-              >
-              <option value=""/>
-              {this.state.muscles.map(muscle => (
-                <option key={muscle._id} value={muscle._id}>
-                  {muscle.name}
-                </option>
-              ))}
-            </select>
-            {this.state.errors.muscle_id && <div className="alert alert-danger">{this.state.errors.muscle_id}</div>}
-          </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
     );

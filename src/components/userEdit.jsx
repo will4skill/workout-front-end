@@ -95,31 +95,34 @@ class UserEdit extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="inlineFormInputName">Name</label>
-            <input
-              name="name"
-              type="text"
-              className="form-control"
-              id="inlineFormInputName"
-              value={this.state.user.name}
-              onChange={this.handleChange}
-            />
-            {this.state.errors.name && <div className="alert alert-danger">{this.state.errors.name}</div>}
+          <div>
+            <h4>Edit User</h4>
+            <div className="form-group">
+              <label htmlFor="inlineFormInputName">Name</label>
+              <input
+                name="name"
+                type="text"
+                className="form-control"
+                id="inlineFormInputName"
+                value={this.state.user.name}
+                onChange={this.handleChange}
+              />
+              {this.state.errors.name && <div className="alert alert-danger">{this.state.errors.name}</div>}
+            </div>
+            <div className="form-group">
+              <label htmlFor="inlineFormInputPassword">Email</label>
+              <input
+                name="email"
+                type="text"
+                className="form-control"
+                id="inlineFormInputPassword"
+                value={this.state.user.email}
+                onChange={this.handleChange}
+              />
+              {this.state.errors.email && <div className="alert alert-danger">{this.state.errors.email}</div>}
+            </div>
+            <button type="submit" className="btn btn-primary">Submit</button>
           </div>
-          <div className="form-group">
-            <label htmlFor="inlineFormInputPassword">Email</label>
-            <input
-              name="email"
-              type="text"
-              className="form-control"
-              id="inlineFormInputPassword"
-              value={this.state.user.email}
-              onChange={this.handleChange}
-            />
-            {this.state.errors.email && <div className="alert alert-danger">{this.state.errors.email}</div>}
-          </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
     );

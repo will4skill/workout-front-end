@@ -104,108 +104,109 @@ class CompletedExerciseNew extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <h3 className="">New Comp Ex</h3>
-          <div className="form-group">
-            <label htmlFor="inputGroupExerciseId">Exercise</label>
-            <select
-              name="exercise_id"
-              className="form-control"
-              id="inputGroupExerciseId"
-              onChange={this.handleChange}
-              >
-              <option value=""/>
-              {this.state.exercises.map(exercise => (
-                <option key={exercise._id} value={exercise._id}>
-                  {exercise.name}
-                </option>
-              ))}
-            </select>
-            {this.state.errors.exercise_id && <div className="alert alert-danger">{this.state.errors.exercise_id}</div>}
-          </div>
-          <div className="form-group">
-            <label htmlFor="inputGroupExerciseType">Exercise Types</label>
-            <select
-              name="exercise_type"
-              className="form-control"
-              id="inputGroupExerciseType"
-              onChange={this.handleChange}
-              >
-              <option value=""/>
-              {this.exercise_types.map(type => (
-                <option key={type.id} value={type.name}>
-                  {type.name}
-                </option>
-              ))}
-            </select>
-            {this.state.errors.exercise_type && <div className="alert alert-danger">{this.state.errors.exercise_type}</div>}
-          </div>
+          <div>
+            <h4>New Completed Exercise</h4>
+            <div className="form-group">
+              <label htmlFor="inputGroupExerciseId">Exercise</label>
+              <select
+                name="exercise_id"
+                className="form-control"
+                id="inputGroupExerciseId"
+                onChange={this.handleChange}
+                >
+                <option value=""/>
+                {this.state.exercises.map(exercise => (
+                  <option key={exercise._id} value={exercise._id}>
+                    {exercise.name}
+                  </option>
+                ))}
+              </select>
+              {this.state.errors.exercise_id && <div className="alert alert-danger">{this.state.errors.exercise_id}</div>}
+            </div>
+            <div className="form-group">
+              <label htmlFor="inputGroupExerciseType">Exercise Types</label>
+              <select
+                name="exercise_type"
+                className="form-control"
+                id="inputGroupExerciseType"
+                onChange={this.handleChange}
+                >
+                <option value=""/>
+                {this.exercise_types.map(type => (
+                  <option key={type.id} value={type.name}>
+                    {type.name}
+                  </option>
+                ))}
+              </select>
+              {this.state.errors.exercise_type && <div className="alert alert-danger">{this.state.errors.exercise_type}</div>}
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="exampleInputSets">Sets</label>
-            <input
-              name="sets"
-              type="number"
-              className="form-control"
-              id="exampleInputSets"
-              value={this.state.completed_exercise.sets}
-              onChange={this.handleChange}
-            />
-            {this.state.errors.sets && <div className="alert alert-danger">{this.state.errors.sets}</div>}
-          </div>
+            <div className="form-group">
+              <label htmlFor="exampleInputSets">Sets</label>
+              <input
+                name="sets"
+                type="number"
+                className="form-control"
+                id="exampleInputSets"
+                value={this.state.completed_exercise.sets}
+                onChange={this.handleChange}
+              />
+              {this.state.errors.sets && <div className="alert alert-danger">{this.state.errors.sets}</div>}
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="exampleInputReps">Reps</label>
-            <input
-              name="reps"
-              type="number"
-              className="form-control"
-              id="exampleInputReps"
-              value={this.state.completed_exercise.reps}
-              onChange={this.handleChange}
-            />
-            {this.state.errors.reps && <div className="alert alert-danger">{this.state.errors.reps}</div>}
-          </div>
+            <div className="form-group">
+              <label htmlFor="exampleInputReps">Reps</label>
+              <input
+                name="reps"
+                type="number"
+                className="form-control"
+                id="exampleInputReps"
+                value={this.state.completed_exercise.reps}
+                onChange={this.handleChange}
+              />
+              {this.state.errors.reps && <div className="alert alert-danger">{this.state.errors.reps}</div>}
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="exampleInputLoad">Load</label>
-            <input
-              name="load"
-              type="number"
-              className="form-control"
-              id="exampleInputLoad"
-              value={this.state.completed_exercise.load}
-              onChange={this.handleChange}
-            />
-            {this.state.errors.load && <div className="alert alert-danger">{this.state.errors.load}</div>}
-          </div>
+            <div className="form-group">
+              <label htmlFor="exampleInputLoad">Load</label>
+              <input
+                name="load"
+                type="number"
+                className="form-control"
+                id="exampleInputLoad"
+                value={this.state.completed_exercise.load}
+                onChange={this.handleChange}
+              />
+              {this.state.errors.load && <div className="alert alert-danger">{this.state.errors.load}</div>}
+            </div>
 
-          <div className="form-group form-check">
-            <input
-              name="unilateral"
-              type="checkbox"
-              className="form-check-input"
-              htmlFor="exampleCheck1"
-              value={this.state.completed_exercise.unilateral}
-              onChange={this.handleChange}
-            />
-            <label className="form-check-label" htmlFor="exampleCheck1">Unilateral?</label>
-            {this.state.errors.unilateral && <div className="alert alert-danger">{this.state.errors.unilateral}</div>}
-          </div>
+            <div className="form-group form-check">
+              <input
+                name="unilateral"
+                type="checkbox"
+                className="form-check-input"
+                htmlFor="exampleCheck1"
+                value={this.state.completed_exercise.unilateral}
+                onChange={this.handleChange}
+              />
+              <label className="form-check-label" htmlFor="exampleCheck1">Unilateral?</label>
+              {this.state.errors.unilateral && <div className="alert alert-danger">{this.state.errors.unilateral}</div>}
+            </div>
 
-          <div className="form-group form-check">
-            <input
-              name="mum"
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck2"
-              value={this.state.completed_exercise.mum}
-              onChange={this.handleChange}
-            />
-            <label className="form-check-label" htmlFor="exampleCheck2">MUM?</label>
-            {this.state.errors.mum && <div className="alert alert-danger">{this.state.errors.mum}</div>}
+            <div className="form-group form-check">
+              <input
+                name="mum"
+                type="checkbox"
+                className="form-check-input"
+                id="exampleCheck2"
+                value={this.state.completed_exercise.mum}
+                onChange={this.handleChange}
+              />
+              <label className="form-check-label" htmlFor="exampleCheck2">MUM?</label>
+              {this.state.errors.mum && <div className="alert alert-danger">{this.state.errors.mum}</div>}
+            </div>
+            <button type="submit" className="btn btn-primary">Submit</button>
           </div>
-
-          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
     );

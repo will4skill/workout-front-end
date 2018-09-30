@@ -78,18 +78,21 @@ class MuscleEdit extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="inlineFormInputName">Name</label>
-            <input
-              type="text"
-              className="form-control"
-              id="inlineFormInputName"
-              value={this.state.muscle.name}
-              onChange={this.handleChange}
-            />
-            {this.state.errors.value && <div className="alert alert-danger">{this.state.errors.value}</div>}
+          <div>
+            <h4>Edit Muscle</h4>
+            <div className="form-group">
+              <label htmlFor="inlineFormInputName">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="inlineFormInputName"
+                value={this.state.muscle.name}
+                onChange={this.handleChange}
+              />
+              {this.state.errors.value && <div className="alert alert-danger">{this.state.errors.value}</div>}
+            </div>
+            <button type="submit" className="btn btn-primary">Submit</button>
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
     );

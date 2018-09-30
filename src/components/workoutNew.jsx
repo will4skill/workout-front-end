@@ -72,19 +72,22 @@ class WorkoutNew extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="inlineFormInputName">Name</label>
-            <input
-              name="date"
-              type="text"
-              className="form-control"
-              id="inlineFormInputName"
-              value={this.state.workout.date}
-              onChange={this.handleChange}
-            />
-            {this.state.errors.date && <div className="alert alert-danger">{this.state.errors.date}</div>}
+          <div>
+            <h4>New Workout</h4>
+            <div className="form-group">
+              <label htmlFor="inlineFormInputName">Name</label>
+              <input
+                name="date"
+                type="text"
+                className="form-control"
+                id="inlineFormInputName"
+                value={this.state.workout.date}
+                onChange={this.handleChange}
+              />
+              {this.state.errors.date && <div className="alert alert-danger">{this.state.errors.date}</div>}
+            </div>
+            <button type="submit" className="btn btn-primary">Submit</button>
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
     );
