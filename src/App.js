@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import NavBar from './components/navBar';
+import Login from './components/login';
+import Logout from './components/logout';
 import UserIndex from './components/userIndex';
 import UserNew from './components/userNew';
 import UserEdit from './components/userEdit';
@@ -28,6 +30,8 @@ class App extends Component {
         <NavBar />
         <main className="container">
           <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/logout" component={Logout} />
             <Route path="/users/index" component={UserIndex} />
             <Route path="/users/new" component={UserNew} />
             <Route path="/users/me/edit" component={UserEdit} />
