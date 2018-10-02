@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { saveWorkout } from '../../services/workoutService.js';
-import { loginWithJwt } from '../../services/authService';
 
 const BaseJoi = require('joi-browser');
 const Extension = require('joi-date-extensions');
@@ -64,7 +63,7 @@ class WorkoutNew extends Component {
     this.setState({ errors: errors || {} });
     if (errors) { return; }
 
-    const response = await saveWorkout(this.state.workout);
+    await saveWorkout(this.state.workout);
     this.props.history.push('/users/me/show');
   }
 
@@ -75,12 +74,12 @@ class WorkoutNew extends Component {
           <div>
             <h4>New Workout</h4>
             <div className="form-group">
-              <label htmlFor="inlineFormInputName">Name</label>
+              <label htmlFor="inlineFormInputDate">Date</label>
               <input
                 name="date"
                 type="text"
                 className="form-control"
-                id="inlineFormInputName"
+                id="inlineFormInputDate"
                 value={this.state.workout.date}
                 onChange={this.handleChange}
               />

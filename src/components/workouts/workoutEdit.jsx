@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { updateWorkout, getWorkout } from '../../services/workoutService.js';
-import { loginWithJwt } from '../../services/authService';
 
 const BaseJoi = require('joi-browser');
 const Extension = require('joi-date-extensions');
@@ -82,7 +81,7 @@ class WorkoutEdit extends Component {
     this.setState({ errors: errors || {} });
     if (errors) { return; }
 
-    const response = await updateWorkout(this.state.workout);
+    await updateWorkout(this.state.workout);
     this.props.history.push('/users/me/show');
   }
 

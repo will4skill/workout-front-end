@@ -50,29 +50,41 @@ class ExerciseIndex extends Component {
     return (
       <React.Fragment>
         <h1>Exercises</h1>
-        <Link
-          to="/exercises/new"
-          className="btn btn-primary"
-        >
+        <Link to="/exercises/new" className="btn btn-primary">
           New Exercise
         </Link>
-        <ul className="list-group">
-          {this.state.exercises.map(exercise => (
-            <li key={exercise._id} className="list-group-item">
-              {exercise.name} ||| {exercise.muscle_name}
-              <Link
-                to={exercise._id + "/edit"}
-                className="btn btn-info btn-sm">
-                Edit
-              </Link>
-              <button
-                onClick={() => this.handleDelete(exercise)}
-                className="btn btn-danger btn-sm">
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Exercise</th>
+              <th scope="col">Primary Muscle</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.exercises.map(exercise => (
+              <tr key={exercise._id}>
+                <td>{exercise.name}</td>
+                <td>{exercise.muscle_name}</td>
+                <td>
+                  <Link
+                    to={exercise._id + "/edit"}
+                    className="btn btn-info btn-sm">
+                    Edit
+                  </Link>
+                </td>
+                <td>
+                  <button
+                    onClick={() => this.handleDelete(exercise)}
+                    className="btn btn-danger btn-sm">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </React.Fragment>
     );
   }

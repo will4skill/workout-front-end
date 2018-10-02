@@ -39,29 +39,37 @@ class MuscleIndex extends Component {
     return (
       <React.Fragment>
         <h1>Muscles</h1>
-        <Link
-          to="/muscles/new"
-          className="btn btn-primary"
-        >
-          New Muscle
-        </Link>
-        <ul className="list-group">
-          {this.state.muscles.map(muscle => (
-            <li key={muscle._id} className="list-group-item">
-              {muscle.name}
-              <Link
-                to={muscle._id + "/edit"}
-                className="btn btn-info btn-sm">
-                Edit
-              </Link>
-              <button
-                onClick={() => this.handleDelete(muscle)}
-                className="btn btn-danger btn-sm">
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
+        <Link to="/muscles/new" className="btn btn-primary">New Muscle</Link>
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Muscle</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.muscles.map(muscle => (
+              <tr key={muscle._id}>
+                <td>{muscle.name}</td>
+                <td>
+                  <Link
+                    to={muscle._id + "/edit"}
+                    className="btn btn-info btn-sm">
+                    Edit
+                  </Link>
+                </td>
+                <td>
+                  <button
+                    onClick={() => this.handleDelete(muscle)}
+                    className="btn btn-danger btn-sm">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </React.Fragment>
     );
   }

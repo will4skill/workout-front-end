@@ -32,6 +32,13 @@ class UserShow extends Component {
     }
   }
 
+  reformatDate(date_string){
+    const year = date_string.slice(0,4);
+    const month = date_string.slice(5,7);
+    const day = date_string.slice(8,10);
+    return `${month}-${day}-${year}`;
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -43,27 +50,44 @@ class UserShow extends Component {
           to="/users/me/edit" className="btn btn-info btn-sm">
           Edit User
         </Link>
-        <ul className="list-group">
-          {this.state.workouts.map(workout => (
-            <li key={workout._id} className="list-group-item">
-              <Link to={"/workouts/" + workout._id + "/show"}>
-                id: {workout._id}
-              </Link> |
-              {workout.date} |
-                ex count: {workout.exercises.length}
-              <Link
-                to={"/workouts/" + workout._id + "/edit"}
-                className="btn btn-info btn-sm">
-                Edit
-              </Link>
-              <button
-                onClick={() => this.handleDelete(workout)}
-                className="btn btn-danger btn-sm">
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
+
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Date</th>
+              <th scope="col">Exercises</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.workouts.map(workout => (
+              <tr key={workout._id}>
+                <td>
+                  <Link to={"/workouts/" + workout._id + "/show"}>
+                    {workout._id}
+                  </Link>
+                </td>
+                <td>{this.reformatDate(workout.date)}</td>
+                <td>{workout.exercises.length}</td>
+                <td>
+                  <Link to={"/workouts/" + workout._id + "/edit"}
+                    className="btn btn-info btn-sm">
+                    Edit
+                  </Link>
+                </td>
+                <td>
+                  <button
+                    onClick={() => this.handleDelete(workout)}
+                    className="btn btn-danger btn-sm">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </React.Fragment>
     );
   }

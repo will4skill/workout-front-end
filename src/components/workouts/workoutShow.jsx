@@ -60,26 +60,48 @@ class WorkoutShow extends Component {
           className="btn btn-primary">
           New Exercise
         </Link>
-        <ul className="list-group">
-          {this.state.workout.completed_exercises.map(completed_exercise => (
-            <li key={completed_exercise._id} className="list-group-item">
-              {completed_exercise.exercise_id.name} ||
-              Sets: {completed_exercise.sets} ||
-              Reps: {completed_exercise.reps} ||
-              Load: {completed_exercise.load}
-              <Link
-                to={"/completed_exercise/" + completed_exercise._id + "/edit"}
-                className="btn btn-info btn-sm">
-                Edit
-              </Link>
-              <button
-                onClick={() => this.handleDelete(completed_exercise)}
-                className="btn btn-danger btn-sm">
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
+
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Exercise</th>
+              <th scope="col">Load</th>
+              <th scope="col">Sets</th>
+              <th scope="col">Reps</th>
+              <th scope="col">Type</th>
+              <th scope="col">Unilateral?</th>
+              <th scope="col">MUM?</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.workout.completed_exercises.map(completed_exercise => (
+              <tr key={completed_exercise._id}>
+                <td>{completed_exercise.exercise_id.name}</td>
+                <td>{completed_exercise.load}</td>
+                <td>{completed_exercise.sets}</td>
+                <td>{completed_exercise.reps}</td>
+                <td>{completed_exercise.exercise_type}</td>
+                <td>{completed_exercise.unilateral.toString()}</td>
+                <td>{completed_exercise.mum.toString()}</td>
+                <td>
+                  <Link to={"/completed_exercise/" + completed_exercise._id + "/edit"}
+                    className="btn btn-info btn-sm">
+                    Edit
+                  </Link>
+                </td>
+                <td>
+                  <button
+                    onClick={() => this.handleDelete(completed_exercise)}
+                    className="btn btn-danger btn-sm">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </React.Fragment>
     );
   }
