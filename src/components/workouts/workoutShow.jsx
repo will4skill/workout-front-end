@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
-import { getWorkout } from '../services/workoutService.js';
-import { deleteCompletedExercise } from '../services/completedExerciseService.js';
+import { getWorkout } from '../../services/workoutService.js';
+import { deleteCompletedExercise } from '../../services/completedExerciseService.js';
 
 class WorkoutShow extends Component {
   state = {

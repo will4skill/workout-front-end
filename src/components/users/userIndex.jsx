@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
-import { getUsers, deleteUser } from '../services/userService.js';
+import { getUsers, deleteUser } from '../../services/userService.js';
 
 class UserIndex extends Component {
   state = {

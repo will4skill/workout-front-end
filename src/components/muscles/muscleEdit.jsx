@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Joi from 'joi-browser';
-import { updateMuscle, getMuscle } from '../services/muscleService.js';
+import { updateMuscle, getMuscle } from '../../services/muscleService.js';
 
 class MuscleEdit extends Component {
   constructor(props) {

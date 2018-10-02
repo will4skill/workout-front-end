@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Joi from 'joi-browser';
-import { saveExercise } from '../services/exerciseService.js';
-import { getMuscles } from '../services/muscleService.js';
+import { saveExercise } from '../../services/exerciseService.js';
+import { getMuscles } from '../../services/muscleService.js';
 
 class ExerciseNew extends Component {
   constructor(props) {

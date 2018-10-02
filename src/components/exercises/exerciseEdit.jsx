@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import Joi from 'joi-browser';
-import { getUser, updateUser } from '../services/userService.js';
-import { loginWithJwt } from '../services/authService';
+import { updateExercise, getExercise } from '../../services/exerciseService.js';
+import { getMuscles } from '../../services/muscleService.js';
 
-class UserEdit extends Component {
+class ExerciseEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {
+      exercise: {
         name: "",
-        email: "",
+        muscle_id: ""
       },
+      muscles: [],
       errors: {}
     };
 
@@ -19,18 +20,24 @@ class UserEdit extends Component {
   }
 
   schema = {
-    name: Joi.string().required().min(3).label('User Name'),
-    email: Joi.string().required().email().label("Email")
+    _id: Joi.string(),
+    name: Joi.string().required().min(3).label('Exercise Name'),
+    muscle_id: Joi.string().required().label("Muscle")
   };
 
   async componentDidMount() {
+    const { data: muscles } = await getMuscles();
+    this.setState({ muscles });
+
+    const exercise_id = this.props.match.params.id;
     try {
-      const { data } = await getUser();
-      const user = {
+      const { data } = await getExercise(exercise_id);
+      const exercise = {
+        _id: data._id,
         name: data.name,
-        email: data.email,
+        muscle_id: data.muscle_id
       };
-      this.setState({ user });
+      this.setState({ exercise });
     } catch (exception) {
       if (exception.response && exception.response.status === 404) {
         this.props.history.replace("/not-found");
@@ -39,7 +46,7 @@ class UserEdit extends Component {
   }
 
   validate() {
-    const { error: errors } = Joi.validate(this.state.user, this.schema, { abortEarly: false });
+    const { error: errors } = Joi.validate(this.state.exercise, this.schema, { abortEarly: false });
     if (!errors) return null;
 
     const found_errors = {};
@@ -65,30 +72,23 @@ class UserEdit extends Component {
       delete errors[event.currentTarget.name];
     }
 
-    const user = { ...this.state.user };
-    user[event.currentTarget.name] = event.currentTarget.value;
+    const exercise = { ...this.state.exercise };
+    exercise[event.currentTarget.name] = event.currentTarget.value;
 
-    this.setState({ user, errors });
+    this.setState({ exercise, errors });
   }
 
   async handleSubmit(event) {
     event.preventDefault();
+
     const errors = this.validate();
     this.setState({ errors: errors || {} });
-    if (errors) { return; }
-
-    try {
-      const response = await updateUser(this.state.user);
-      loginWithJwt(response.headers["x-auth-token"]);
-      //window.location = '/';
-      this.props.history.push('/users/index');
-    } catch (exception) {
-      if (exception.reponse && exception.response.status === 400) {
-        const errors = { ...this.state.errors };
-        errors.name = exception.response.data;
-        this.setState({ errors });
-      }
+    if (errors) {
+      return;
     }
+
+    await updateExercise(this.state.exercise);
+    this.props.history.push('/exercises/index');
   }
 
   render() {
@@ -96,7 +96,7 @@ class UserEdit extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <h4>Edit User</h4>
+            <h4>Edit Exercise</h4>
             <div className="form-group">
               <label htmlFor="inlineFormInputName">Name</label>
               <input
@@ -104,22 +104,28 @@ class UserEdit extends Component {
                 type="text"
                 className="form-control"
                 id="inlineFormInputName"
-                value={this.state.user.name}
+                value={this.state.exercise.name}
                 onChange={this.handleChange}
               />
               {this.state.errors.name && <div className="alert alert-danger">{this.state.errors.name}</div>}
             </div>
             <div className="form-group">
-              <label htmlFor="inlineFormInputPassword">Email</label>
-              <input
-                name="email"
-                type="text"
+              <label htmlFor="inputGroupSelect01">Muscle</label>
+              <select
+                value={this.state.exercise.muscle_id}
+                name="muscle_id"
                 className="form-control"
-                id="inlineFormInputPassword"
-                value={this.state.user.email}
+                id="inputGroupSelect01"
                 onChange={this.handleChange}
-              />
-              {this.state.errors.email && <div className="alert alert-danger">{this.state.errors.email}</div>}
+                >
+                <option value=""/>
+                {this.state.muscles.map(muscle => (
+                  <option key={muscle._id} value={muscle._id}>
+                    {muscle.name}
+                  </option>
+                ))}
+              </select>
+              {this.state.errors.muscle_id && <div className="alert alert-danger">{this.state.errors.muscle_id}</div>}
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>
           </div>
@@ -129,4 +135,4 @@ class UserEdit extends Component {
   }
 }
 
-export default UserEdit;
+export default ExerciseEdit;

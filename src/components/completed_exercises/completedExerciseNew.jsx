@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import Joi from 'joi-browser';
-import { getCompletedExercise, updateCompletedExercise } from '../services/completedExerciseService.js';
-import { getExercises } from '../services/exerciseService.js';
+import { saveCompletedExercise } from '../../services/completedExerciseService.js';
+import { getExercises } from '../../services/exerciseService.js';
 
-class CompletedExerciseEdit extends Component {
+class CompletedExerciseNew extends Component {
   constructor(props) {
     super(props);
     this.state = {
       completed_exercise: {
-        _id: "",
         exercise_id: "",
         exercise_type: "",
         sets: 0,
@@ -32,7 +31,6 @@ class CompletedExerciseEdit extends Component {
   ];
 
   schema = {
-    _id: Joi.string(),
     workout_id: Joi.string().required().label("Workout"),
     exercise_id: Joi.string().required().label("Exercise"),
     exercise_type: Joi.string().label("Exercise Type"),
@@ -44,20 +42,11 @@ class CompletedExerciseEdit extends Component {
   };
 
   async componentDidMount() {
-    const { data } = await getCompletedExercise(this.props.match.params.id);
-    const completed_exercise = {
-      _id: data._id,
-      workout_id: data.workout_id,
-      exercise_id: data.exercise_id,
-      exercise_type: data.exercise_type,
-      sets: data.sets,
-      reps: data.reps,
-      load: data.load,
-      unilateral: data.unilateral,
-      mum: data.mum
-    };
+    const completed_exercise = { ...this.state.completed_exercise };
+    completed_exercise.workout_id = this.props.match.params.id;
+    this.setState({ completed_exercise });
     const { data: exercises } = await getExercises();
-    this.setState({ completed_exercise, exercises });
+    this.setState({ exercises });
   }
 
   validate() {
@@ -107,7 +96,7 @@ class CompletedExerciseEdit extends Component {
       return;
     }
 
-    await updateCompletedExercise(this.state.completed_exercise);
+    await saveCompletedExercise(this.state.completed_exercise);
     this.props.history.push("/workouts/" + this.state.completed_exercise.workout_id + "/show");
   }
 
@@ -116,11 +105,10 @@ class CompletedExerciseEdit extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <h4>Edit Completed Exercise</h4>
+            <h4>New Completed Exercise</h4>
             <div className="form-group">
               <label htmlFor="inputGroupExerciseId">Exercise</label>
               <select
-                value={this.state.completed_exercise.exercise_id}
                 name="exercise_id"
                 className="form-control"
                 id="inputGroupExerciseId"
@@ -138,7 +126,6 @@ class CompletedExerciseEdit extends Component {
             <div className="form-group">
               <label htmlFor="inputGroupExerciseType">Exercise Types</label>
               <select
-                value={this.state.completed_exercise.exercise_type}
                 name="exercise_type"
                 className="form-control"
                 id="inputGroupExerciseType"
@@ -197,7 +184,6 @@ class CompletedExerciseEdit extends Component {
               <input
                 name="unilateral"
                 type="checkbox"
-                checked={this.state.completed_exercise.unilateral}
                 className="form-check-input"
                 htmlFor="exampleCheck1"
                 value={this.state.completed_exercise.unilateral}
@@ -211,7 +197,6 @@ class CompletedExerciseEdit extends Component {
               <input
                 name="mum"
                 type="checkbox"
-                checked={this.state.completed_exercise.mum}
                 className="form-check-input"
                 id="exampleCheck2"
                 value={this.state.completed_exercise.mum}
@@ -220,7 +205,6 @@ class CompletedExerciseEdit extends Component {
               <label className="form-check-label" htmlFor="exampleCheck2">MUM?</label>
               {this.state.errors.mum && <div className="alert alert-danger">{this.state.errors.mum}</div>}
             </div>
-
             <button type="submit" className="btn btn-primary">Submit</button>
           </div>
         </form>
@@ -229,4 +213,4 @@ class CompletedExerciseEdit extends Component {
   }
 }
 
-export default CompletedExerciseEdit;
+export default CompletedExerciseNew;

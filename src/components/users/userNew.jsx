@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Joi from 'joi-browser';
-import { saveUser } from '../services/userService.js';
-import { loginWithJwt } from '../services/authService';
+import { saveUser } from '../../services/userService.js';
+import { loginWithJwt } from '../../services/authService';
 
 class UserNew extends Component {
   constructor(props) {
@@ -68,10 +68,10 @@ class UserNew extends Component {
     try {
       const response = await saveUser(this.state.user);
       loginWithJwt(response.headers["x-auth-token"]);
-      //window.location = '/';
-      this.props.history.push('/users/index');
+      window.location = '/';
     } catch (exception) {
-      if (exception.reponse && exception.response.status === 400) {
+      if (exception.response && exception.response.status === 400) {
+        console.log("Failure");
         const errors = { ...this.state.errors };
         errors.name = exception.response.data;
         this.setState({ errors });

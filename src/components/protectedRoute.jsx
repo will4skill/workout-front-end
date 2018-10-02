@@ -2,15 +2,22 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { getCurrentUser } from '../services/authService';
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
-  <Route
-    { ...rest }
-    render={ props => { getCurrentUser() ?
+const ProtectedRoute = ({ redirect_path, admin_required, component: Component, ...rest }) => {
+  const user = getCurrentUser();
+  const test_user = !!admin_required ? user.admin : user;
+
+  return (
+    <Route
+      { ...rest }
+      render={ props => test_user ?
         <Component { ...props } /> :
-        <Redirect to={{ pathname: "/login", state: { from: props.location }}} />
+        <Redirect to={{
+          pathname: redirect_path,
+          state: { from: props.location }}}
+        />
       }
-    }
-  />
+    />
+  );
 };
 
 export default ProtectedRoute

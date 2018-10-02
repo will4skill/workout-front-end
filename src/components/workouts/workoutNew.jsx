@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { saveWorkout } from '../services/workoutService.js';
-import { loginWithJwt } from '../services/authService';
+import { saveWorkout } from '../../services/workoutService.js';
+import { loginWithJwt } from '../../services/authService';
 
 const BaseJoi = require('joi-browser');
 const Extension = require('joi-date-extensions');

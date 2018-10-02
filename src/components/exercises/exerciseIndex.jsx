@@ -1,7 +1,8 @@
 import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
-import { getExercises, deleteExercise } from '../services/exerciseService.js';
-import { getMuscles } from '../services/muscleService.js';
+import { getExercises, deleteExercise } from '../../services/exerciseService.js';
+import { getMuscles } from '../../services/muscleService.js';
+import { getCurrentUser } from '../../services/authService';
 
 class ExerciseIndex extends Component {
   state = {
@@ -25,6 +26,10 @@ class ExerciseIndex extends Component {
   }
 
   async handleDelete(selected_exercise) {
+    if (!getCurrentUser().admin) {
+      alert("Access Denied");
+      return;
+    }
     const old_exercises = this.state.exercises;
     const new_exercises = old_exercises.filter(exercise => {
       return exercise._id !== selected_exercise._id;
