@@ -17,22 +17,16 @@ class NavBar extends Component {
 
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <Link className="navbar-brand" to="/">WorkoutLogger</Link>
         <button
           className="navbar-toggler"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
           onClick={this.handleToggler}>
           <span className="navbar-toggler-icon"></span>
         </button>
+        <Link className="navbar-brand" to="/">WorkoutLogger</Link>
         <div
-          className="navbar-collapse"
+          className={this.state.show ? "navbar-collapse" : "navbar-collapse collapse"}
           id="navbarNav"
-          display={this.state.show.toString()}
           >
           <div className="navbar-nav">
             {!user && (

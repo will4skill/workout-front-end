@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { updateWorkout, getWorkout } from '../../services/workoutService.js';
+import { reformatDate } from '../../utilities/dateUtility.js';
 
 const BaseJoi = require('joi-browser');
 const Extension = require('joi-date-extensions');
@@ -31,7 +32,7 @@ class WorkoutEdit extends Component {
       const { data } = await getWorkout(workout_id);
       const workout = {
         _id: data._id,
-        date: data.date
+        date: reformatDate(data.date)
       };
 
       this.setState({ workout });

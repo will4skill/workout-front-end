@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
 import { getWorkouts, deleteWorkout } from '../../services/workoutService.js';
 import { getUser } from '../../services/userService.js';
+import { reformatDate } from '../../utilities/dateUtility.js';
 
 class UserShow extends Component {
   state = {
@@ -30,13 +31,6 @@ class UserShow extends Component {
       }
       this.setState({ workouts: old_workouts });
     }
-  }
-
-  reformatDate(date_string){
-    const year = date_string.slice(0,4);
-    const month = date_string.slice(5,7);
-    const day = date_string.slice(8,10);
-    return `${month}-${day}-${year}`;
   }
 
   render() {
@@ -69,7 +63,7 @@ class UserShow extends Component {
                     {workout._id}
                   </Link>
                 </td>
-                <td>{this.reformatDate(workout.date)}</td>
+                <td>{reformatDate(workout.date)}</td>
                 <td>{workout.exercises.length}</td>
                 <td>
                   <Link to={"/workouts/" + workout._id + "/edit"}
