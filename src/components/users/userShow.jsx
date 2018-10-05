@@ -7,7 +7,8 @@ import { reformatDate } from '../../utilities/dateUtility.js';
 class UserShow extends Component {
   state = {
     user: {},
-    workouts: []
+    workouts: [],
+    current_page: 1
   };
 
   async componentDidMount() {
@@ -33,7 +34,38 @@ class UserShow extends Component {
     }
   }
 
+  generatePage(page, page_size) {
+    let workouts = [ ...this.state.workouts ];
+    const start_index = (page-1)*page_size;
+    const end_index = start_index + page_size;
+    const workout_slice = workouts.slice(start_index,end_index);
+    return workout_slice;
+  }
+
+  pageNumbers(page_size) {
+    const length = this.state.workouts.length;
+    const number_of_pages = Math.ceil(length / page_size);
+    let page_number_array = [];
+
+    for (let i = 1; i <= number_of_pages; i++) {
+      page_number_array[i-1] = i;
+    }
+    return page_number_array;
+  }
+
+  handlePageChange(page_number, page_size) {
+    const length = this.state.workouts.length;
+    const number_of_pages = Math.ceil(length / page_size);
+    if (page_number <= 0 ||  page_number > number_of_pages) {
+      return;
+    }
+    this.setState({ current_page: page_number });
+  }
+
   render() {
+    const pg_size = 5;
+    const pg_num_array = this.pageNumbers(pg_size);
+
     return (
       <React.Fragment>
         <h1>Username: {this.state.user.name}</h1>
@@ -56,7 +88,7 @@ class UserShow extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.workouts.map(workout => (
+            {this.generatePage(this.state.current_page, pg_size).map(workout => (
               <tr key={workout._id}>
                 <td>
                   <Link to={"/workouts/" + workout._id + "/show"}>
@@ -82,6 +114,39 @@ class UserShow extends Component {
             ))}
           </tbody>
         </table>
+        {(pg_size <= this.state.workouts.length) &&
+          <nav>
+            <ul className="pagination">
+              <li
+                className ={this.state.current_page === 1 ?
+                  "page-item disabled" : "page-item" }
+                onClick={() => this.handlePageChange(this.state.current_page - 1, pg_size)}
+                >
+                <a className="page-link">
+                  <span>&laquo;</span>
+                </a>
+              </li>
+              {pg_num_array.map(page_number => (
+                <li
+                  className={this.state.current_page === page_number ?
+                    "page-item active" : "page-item" }
+                  key={page_number}
+                  onClick={() => this.handlePageChange(page_number, pg_size)}
+                >
+                  <a className="page-link">{page_number}</a>
+                </li>
+              ))}
+              <li
+                className ={this.state.current_page === pg_num_array.length ?
+                  "page-item disabled" : "page-item" }
+                onClick={() => this.handlePageChange(this.state.current_page + 1, pg_size)}
+                >
+                <a className="page-link">
+                  <span>&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>}
       </React.Fragment>
     );
   }
