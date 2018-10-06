@@ -4,6 +4,7 @@ import { getWorkouts, deleteWorkout } from '../../services/workoutService.js';
 import { getUser } from '../../services/userService.js';
 import { reformatDate } from '../../utilities/dateUtility.js';
 import "./user.css";
+import Pagination from "../reusable/pagination";
 
 class UserShow extends Component {
   state = {
@@ -41,33 +42,14 @@ class UserShow extends Component {
     }
   }
 
-  generatePage(page, page_size) {
-    let workouts = [ ...this.state.workouts ];
-    const start_index = (page-1)*page_size;
-    const end_index = start_index + page_size;
-    const workout_slice = workouts.slice(start_index,end_index);
-    return workout_slice;
-  }
-
-  pageNumbers(page_size) {
-    const length = this.state.workouts.length;
-    const number_of_pages = Math.ceil(length / page_size);
-    let page_number_array = [];
-
-    for (let i = 1; i <= number_of_pages; i++) {
-      page_number_array[i-1] = i;
-    }
-    return page_number_array;
-  }
-
-  handlePageChange(page_number, page_size) {
+  handlePageChange = (page_number, page_size) => {
     const length = this.state.workouts.length;
     const number_of_pages = Math.ceil(length / page_size);
     if (page_number <= 0 ||  page_number > number_of_pages) {
       return;
     }
     this.setState({ current_page: page_number });
-  }
+  };
 
   toggleSort = () => {
     const old_direction = this.state.sort_direction;
@@ -79,14 +61,21 @@ class UserShow extends Component {
     this.setState({ workouts, sort_direction });
   }
 
+  generatePage(page, page_size) {
+    let workouts = [ ...this.state.workouts ];
+    const start_index = (page-1)*page_size;
+    const end_index = start_index + page_size;
+    const workout_slice = workouts.slice(start_index,end_index);
+    return workout_slice;
+  }
+
   render() {
-    const pg_size = 5;
-    const pg_num_array = this.pageNumbers(pg_size);
-    const sort_direction = this.state.sort_direction;
+    const page_size = 5;
+    const { name, sort_direction, current_page } = this.state;
 
     return (
       <React.Fragment>
-        <h1>Username: {this.state.user.name}</h1>
+        <h1>Username: {name}</h1>
         <Link to="/workouts/new" className="btn btn-primary">
           New Workout
         </Link>
@@ -99,13 +88,9 @@ class UserShow extends Component {
           <thead>
             <tr>
               <th scope="col">ID</th>
-              <th
-                scope="col"
-                onClick={this.toggleSort}
-                className="sort"
-              >
+              <th scope="col" onClick={this.toggleSort} className="sort">
                 {"Date "}
-                <i className={"fa fa-sort-" + this.state.sort_direction}></i>
+                <i className={"fa fa-sort-" + sort_direction}></i>
               </th>
               <th scope="col">Exercises</th>
               <th scope="col"></th>
@@ -113,7 +98,7 @@ class UserShow extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.generatePage(this.state.current_page, pg_size).map(workout => (
+            {this.generatePage(current_page, page_size).map(workout => (
               <tr key={workout._id}>
                 <td>{workout._id}</td>
                 <td>{reformatDate(workout.date)}</td>
@@ -139,39 +124,13 @@ class UserShow extends Component {
             ))}
           </tbody>
         </table>
-        {(pg_size <= this.state.workouts.length) &&
-          <nav>
-            <ul className="pagination">
-              <li
-                className ={this.state.current_page === 1 ?
-                  "page-item disabled" : "page-item" }
-                onClick={() => this.handlePageChange(this.state.current_page - 1, pg_size)}
-                >
-                <a className="page-link">
-                  <span>&laquo;</span>
-                </a>
-              </li>
-              {pg_num_array.map(page_number => (
-                <li
-                  className={this.state.current_page === page_number ?
-                    "page-item active" : "page-item" }
-                  key={page_number}
-                  onClick={() => this.handlePageChange(page_number, pg_size)}
-                >
-                  <a className="page-link">{page_number}</a>
-                </li>
-              ))}
-              <li
-                className ={this.state.current_page === pg_num_array.length ?
-                  "page-item disabled" : "page-item" }
-                onClick={() => this.handlePageChange(this.state.current_page + 1, pg_size)}
-                >
-                <a className="page-link">
-                  <span>&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>}
+
+        <Pagination
+          page_size={page_size}
+          item_count={this.state.workouts.length}
+          current_page={this.state.current_page}
+          onPageChange={this.handlePageChange}
+        />
       </React.Fragment>
     );
   }
