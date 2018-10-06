@@ -83,7 +83,7 @@ class ExerciseIndex extends Component {
               <Link to="/exercises/new" className="btn btn-primary">
                 New Exercise
               </Link>
-              <table className="table table-bordered">
+              <table className="table table-sm table-bordered">
                 <thead>
                   <tr>
                     <th scope="col">Exercise</th>
