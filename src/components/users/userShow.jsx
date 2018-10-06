@@ -3,18 +3,25 @@ import { Link } from 'react-router-dom';
 import { getWorkouts, deleteWorkout } from '../../services/workoutService.js';
 import { getUser } from '../../services/userService.js';
 import { reformatDate } from '../../utilities/dateUtility.js';
+import "./user.css";
 
 class UserShow extends Component {
   state = {
     user: {},
     workouts: [],
-    current_page: 1
+    current_page: 1,
+    sort_direction: "desc"
   };
 
   async componentDidMount() {
     const { data: workouts } = await getWorkouts();
+    workouts.sort(this.compareDates);
     const { data: user } = await getUser();
     this.setState({ workouts, user });
+  }
+
+  compareDates(a, b) {
+    return new Date(b.date) - new Date(a.date);
   }
 
   async handleDelete(selected_workout) {
@@ -62,9 +69,20 @@ class UserShow extends Component {
     this.setState({ current_page: page_number });
   }
 
+  toggleSort = () => {
+    const old_direction = this.state.sort_direction;
+    const workouts = [ ...this.state.workouts ];
+    workouts.reverse();
+    let sort_direction;
+    sort_direction = old_direction === "desc" ? "asc" : "desc";
+
+    this.setState({ workouts, sort_direction });
+  }
+
   render() {
     const pg_size = 5;
     const pg_num_array = this.pageNumbers(pg_size);
+    const sort_direction = this.state.sort_direction;
 
     return (
       <React.Fragment>
@@ -81,7 +99,14 @@ class UserShow extends Component {
           <thead>
             <tr>
               <th scope="col">ID</th>
-              <th scope="col">Date</th>
+              <th
+                scope="col"
+                onClick={this.toggleSort}
+                className="sort"
+              >
+                {"Date "}
+                <i className={"fa fa-sort-" + this.state.sort_direction}></i>
+              </th>
               <th scope="col">Exercises</th>
               <th scope="col"></th>
               <th scope="col"></th>
@@ -90,13 +115,13 @@ class UserShow extends Component {
           <tbody>
             {this.generatePage(this.state.current_page, pg_size).map(workout => (
               <tr key={workout._id}>
+                <td>{workout._id}</td>
+                <td>{reformatDate(workout.date)}</td>
                 <td>
                   <Link to={"/workouts/" + workout._id + "/show"}>
-                    {workout._id}
+                    {workout.exercises.length}
                   </Link>
                 </td>
-                <td>{reformatDate(workout.date)}</td>
-                <td>{workout.exercises.length}</td>
                 <td>
                   <Link to={"/workouts/" + workout._id + "/edit"}
                     className="btn btn-info btn-sm">
