@@ -68,7 +68,7 @@ class WorkoutIndex extends Component {
 
   render() {
     const page_size = 5;
-    const { name, sort_direction, current_page } = this.state;
+    const { sort_direction, current_page } = this.state;
 
     return (
       <React.Fragment>

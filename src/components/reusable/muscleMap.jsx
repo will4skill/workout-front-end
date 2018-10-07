@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import "./muscleMap.css";
 
-const MuscleMap = ({ current_muscle, onMuscleSelect }) => {
+const MuscleMap = ({ current_muscles, onMuscleSelect }) => {
+  let obj = {};
+  for (let current_muscle of current_muscles) {
+    obj[current_muscle] = current_muscle;
+  }
+
   const front_muscles = [
     {
       d: "M93.947,98.424 C93.947,98.424 103.697,91.174 103.697,91.174 L114.947,91.174 C118.697,92.174 121.197,97.674 121.197,97.674 C122.947,97.424 124.446,101.424 124.446,101.424 L125.196,127.674 C124.696,130.424 123.196,132.174 121.196,133.424 C119.196,134.674 115.946,134.674 106.446,134.424 C96.946,134.174 79.696,119.674 79.696,119.674 C79.696,119.674 93.947,98.424 93.947,98.424 M157.444,98.424 C157.444,98.424 171.694,119.674 171.694,119.674 C171.694,119.674 154.444,134.174 144.944,134.424 C135.444,134.674 132.194,134.674 130.194,133.424 C128.194,132.174 126.694,130.424 126.194,127.674 L126.944,101.424 C126.944,101.424 128.444,97.424 130.194,97.674 C130.194,97.674 132.694,92.174 136.444,91.174 L147.694,91.174 C147.694,91.174 157.444,98.424 157.444,98.424",
@@ -104,8 +109,8 @@ const MuscleMap = ({ current_muscle, onMuscleSelect }) => {
     }
   ];
 
-  function selectCssClass(muscle_name, muscle) {
-    return (muscle && muscle.name === muscle_name) ?
+  function selectCssClass(muscle_name, muscles) {
+    return (muscles[muscle_name] === muscle_name) ?
     "highlighted-muscle" : "default-muscle";
   }
 
@@ -126,7 +131,7 @@ const MuscleMap = ({ current_muscle, onMuscleSelect }) => {
           <path
             d={muscle.d}
             key={muscle.d}
-            className={selectCssClass(muscle.id, current_muscle)}
+            className={selectCssClass(muscle.id, obj)}
             onClick={() => onMuscleSelect(muscle.id)}
           />
         ))}
@@ -141,7 +146,7 @@ const MuscleMap = ({ current_muscle, onMuscleSelect }) => {
           <path
             d={muscle.d}
             key={muscle.d}
-            className={selectCssClass(muscle.id, current_muscle)}
+            className={selectCssClass(muscle.id, obj)}
             onClick={() => onMuscleSelect(muscle.id)}
           />
         ))}
@@ -151,8 +156,8 @@ const MuscleMap = ({ current_muscle, onMuscleSelect }) => {
 };
 
 MuscleMap.propTypes = {
-  current_muscle: PropTypes.object.isRequired,
-  onMuscleSelect: PropTypes.func.isRequired
+  current_muscles: PropTypes.array.isRequired,
+  onMuscleSelect: PropTypes.func
 };
 
 export default MuscleMap;

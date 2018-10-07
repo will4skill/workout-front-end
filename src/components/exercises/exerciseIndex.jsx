@@ -65,7 +65,6 @@ class ExerciseIndex extends Component {
   };
 
   render() {
-
     return (
       <React.Fragment>
         <div className="container">
@@ -74,7 +73,7 @@ class ExerciseIndex extends Component {
               <h1>Exercises</h1>
 
               <MuscleMap
-                current_muscle={this.state.current_muscle}
+                current_muscles={[this.state.current_muscle.name]}
                 onMuscleSelect={this.handleMuscleSelect}
               />
             </div>

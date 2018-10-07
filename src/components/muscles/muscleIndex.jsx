@@ -64,7 +64,7 @@ class MuscleIndex extends Component {
               <h1>Muscles</h1>
 
               <MuscleMap
-                current_muscle={this.state.current_muscle}
+                current_muscles={[this.state.current_muscle.name]}
                 onMuscleSelect={this.handleMuscleSelect}
               />
             </div>

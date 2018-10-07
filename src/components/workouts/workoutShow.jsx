@@ -1,7 +1,9 @@
 import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
 import { getWorkout } from '../../services/workoutService.js';
+import { getMuscles } from '../../services/muscleService.js';
 import { deleteCompletedExercise } from '../../services/completedExerciseService.js';
+import MuscleMap from "../reusable/muscleMap";
 
 class WorkoutShow extends Component {
   state = {
@@ -9,11 +11,14 @@ class WorkoutShow extends Component {
       _id: "",
       date: "",
       completed_exercises: []
-    }
+    },
+    muscles: []
   };
   workout_id = this.props.match.params.id;
 
   async componentDidMount() {
+    const { data: muscles } = await getMuscles();
+
     try {
       const { data } = await getWorkout(this.workout_id);
       const workout = {
@@ -21,8 +26,7 @@ class WorkoutShow extends Component {
         date: data.date,
         completed_exercises: data.exercises
       };
-
-      this.setState({ workout });
+      this.setState({ workout, muscles });
     } catch (exception) {
       if (exception.response && exception.response.status === 404) {
         this.props.history.replace("/not-found");
@@ -51,10 +55,31 @@ class WorkoutShow extends Component {
     }
   }
 
+  getSelectedMuscles() {
+    let muscle_ids = [];
+    const completed_exercises = this.state.workout.completed_exercises;
+    const muscles = this.state.muscles;
+    let muscle_names = {};
+    let selected_muscles = [];
+
+    for (let completed_exercise of completed_exercises) {
+      muscle_ids.push(completed_exercise.exercise_id.muscle_id);
+    }
+    for (let muscle of muscles){
+      muscle_names[muscle._id] = muscle.name;
+    }
+    for (let muscle_id of muscle_ids) {
+      let name = muscle_names[muscle_id];
+      selected_muscles.push(name);
+    }
+    return selected_muscles;
+  }
+
   render() {
     return (
       <React.Fragment>
         <h1>Workout ID: {this.workout_id}</h1>
+        <MuscleMap current_muscles={this.getSelectedMuscles()} />
         <Link
           to={"/workouts/" + this.workout_id + "/completed_exercise/new"}
           className="btn btn-primary">
