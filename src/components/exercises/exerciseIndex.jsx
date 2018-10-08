@@ -30,7 +30,7 @@ class ExerciseIndex extends Component {
 
   async handleDelete(selected_exercise) {
     if (!getCurrentUser().admin) {
-      alert("Access Denied");
+      alert("Access Denied, Admin Only");
       return;
     }
     const old_exercises = this.state.exercises;

@@ -17,7 +17,7 @@ class MuscleIndex extends Component {
 
   async handleDelete(selected_muscle) {
     if (!getCurrentUser().admin) {
-      alert("Access Denied");
+      alert("Access Denied, Admin Only");
       return;
     }
 
