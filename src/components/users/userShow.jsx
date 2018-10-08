@@ -18,8 +18,8 @@ class UserShow extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1>Username: {this.state.user.name}</h1>
-        <h1>Workouts Completed: {this.state.workouts.length}</h1>
+        <h3>Username: {this.state.user.name}</h3>
+        <h3>Workouts Completed: {this.state.workouts.length}</h3>
         <Link
           to="/users/me/edit" className="btn btn-info btn-lg">
           Edit User
