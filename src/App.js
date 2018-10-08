@@ -24,15 +24,12 @@ import HomePage from './components/homePage';
 import ProtectedRoute from './components/protectedRoute';
 import NotFound from './components/notFound';
 
-import './App.css';
-
 class App extends Component {
   render() {
     return (
-      <React.Fragment>
-        <NavBar />
-        <Footer />
-        <main className="container">
+      <div className="custom-base-container">
+        <NavBar className="custom-navbar"/>
+        <main className="custom-container">
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
@@ -122,7 +119,8 @@ class App extends Component {
             <Redirect to="/not-found" />
           </Switch>
         </main>
-      </React.Fragment>
+        <Footer />
+      </div>
     );
   }
 }

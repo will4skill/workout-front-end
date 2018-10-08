@@ -21,7 +21,7 @@ class UserShow extends Component {
         <h1>Username: {this.state.user.name}</h1>
         <h1>Workouts Completed: {this.state.workouts.length}</h1>
         <Link
-          to="/users/me/edit" className="btn btn-info btn-sm">
+          to="/users/me/edit" className="btn btn-info btn-lg">
           Edit User
         </Link>
       </React.Fragment>

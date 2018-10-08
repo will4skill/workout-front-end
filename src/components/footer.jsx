@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <nav className="navbar fixed-bottom navbar-light bg-light">
+    <nav className="navbar navbar-light bg-light">
       jtimwill@gmail.com
     </nav>
   );
