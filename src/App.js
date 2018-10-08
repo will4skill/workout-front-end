@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import NavBar from './components/navBar';
+import Footer from './components/footer';
 import Login from './components/login';
 import Logout from './components/logout';
 import UserIndex from './components/users/userIndex';
@@ -30,6 +31,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <NavBar />
+        <Footer />
         <main className="container">
           <Switch>
             <Route path="/login" component={Login} />
