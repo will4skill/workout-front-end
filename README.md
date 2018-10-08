@@ -10,6 +10,13 @@ this project is based on what I learned in the following course: https://codewit
 * Joi-browser (user-input validation)
 * React-router-dom (routing)
 
+Additional resources that helped me:
+* Sort by date: https://stackoverflow.com/questions/10123953/sort-javascript-object-array-by-date
+* Clickable map example: https://codepen.io/websitebeaver/pen/oLGGNz
+* Exclude a class in CSS: https://stackoverflow.com/questions/16201948/how-to-exclude-particular-class-name-in-css-selector/16202009*/
+* Test for empty object: https://stackoverflow.com/questions/679915/how-do-i-test-for-an-empty-javascript-object
+* Sticky footer: https://www.learnenough.com/css-and-layout-tutorial
+
 ## Project Setup
 1. Install Node.js: https://nodejs.org/
 2. Download project files
