@@ -5,7 +5,7 @@ http.setJwt(getJwt());
 
 export async function login(email, password) {
   const obj = { email, password };
-  const url = "http://localhost:3900/api/login"
+  const url = "/login"
   const { data } = await http.post(url, obj);
   localStorage.setItem("token", data.jwt);
 }

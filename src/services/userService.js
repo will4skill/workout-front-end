@@ -1,11 +1,11 @@
 import http from './httpService';
 
 export function getUsers() {
-  return http.get("http://localhost:3900/api/users");
+  return http.get("/users");
 };
 
 export function getUser() {
-  return http.get("http://localhost:3900/api/users/me");
+  return http.get("/users/me");
 };
 
 export function saveUser(user) {
@@ -14,11 +14,11 @@ export function saveUser(user) {
     email: user.email,
     password: user.password
   };
-  return http.post("http://localhost:3900/api/users", obj);
+  return http.post("/users", obj);
 };
 
 export function deleteUser(user_id) {
-  return http.delete(`http://localhost:3900/api/users/${user_id}`);
+  return http.delete(`/users/${user_id}`);
 };
 
 export function updateUser(user) {
@@ -26,5 +26,5 @@ export function updateUser(user) {
     name: user.name,
     email: user.email
   };
-  return http.put("http://localhost:3900/api/users/me", obj);
+  return http.put("/users/me", obj);
 };
