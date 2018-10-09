@@ -28,20 +28,20 @@ Additional resources that helped me:
 
 ## Routes and Components
 ### Login/Logout
-|URL|Component|
+|URL|Corresponding Component|
 |---|---|
 /login|Login|
 /logout|Logout|
 
 ### Users Resource
-|URL|Component|
+|URL|Corresponding Component|
 |---|---|
 /users/index|UserIndex|
 /users/me/edit|UserNew|
 /users/me/show|UserShow|
 
 ### Workouts Resource
-|URL|Component|
+|URL|Corresponding Component|
 |---|---|
 /workouts/index|WorkoutIndex|
 /workouts/new|WorkoutNew|
@@ -50,31 +50,32 @@ Additional resources that helped me:
 /workouts/:id/completed_exercise|CompletedExerciseNew|
 
 ### CompletedExercises Resource
-|URL|Component|
+|URL|Corresponding Component|
 |---|---|
 /completed_exercise/:id/edit|CompletedExerciseEdit|
 
 ### Muscles Resource
-|URL|Component|
+|URL|Corresponding Component|
 |---|---|
 /muscles/index|MuscleIndex|
 /muscles/new|MuscleNew|
 /muscles/:id/edit|MuscleEdit|
 
 ### Exercises Resource
-|URL|Component|
+|URL|Corresponding Component|
 |---|---|
 /exercises/index|ExerciseIndex|
 /exercises/new|ExerciseNew|
 /exercises/:id/edit|ExerciseEdit|
 
 ### Misc Components
-|URL|Component|
+|URL|Corresponding Component|
 |---|---|
 /|HomePage|
 /not-found|NotFound|
 
 ## Services
+These functions connect the React UI to the Node API.
 ### Auth Service
 |Function|API URL|Result|
 |---|---|---|
