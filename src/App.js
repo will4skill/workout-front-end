@@ -71,7 +71,7 @@ class App extends Component {
               redirect_path="/login"
             />
             <ProtectedRoute
-              path="/workouts/:id/completed_exercise/"
+              path="/workouts/:id/completed_exercise"
               component={CompletedExerciseNew}
               redirect_path="/login"
             />
@@ -85,35 +85,35 @@ class App extends Component {
               component={MuscleIndex}
               redirect_path="/login"
             />
-              <ProtectedRoute
-                path="/muscles/new"
-                component={MuscleNew}
-                redirect_path="/muscles/index"
-                admin_required={true}
-              />
-              <ProtectedRoute
-                path="/muscles/:id/edit"
-                component={MuscleEdit}
-                redirect_path="/muscles/index"
-                admin_required={true}
-              />
+            <ProtectedRoute
+              path="/muscles/new"
+              component={MuscleNew}
+              redirect_path="/muscles/index"
+              admin_required={true}
+            />
+            <ProtectedRoute
+              path="/muscles/:id/edit"
+              component={MuscleEdit}
+              redirect_path="/muscles/index"
+              admin_required={true}
+            />
             <ProtectedRoute
               path="/exercises/index"
               component={ExerciseIndex}
               redirect_path="/login"
             />
-              <ProtectedRoute
-                path="/exercises/new"
-                component={ExerciseNew}
-                redirect_path="/exercises/index"
-                admin_required={true}
-              />
-              <ProtectedRoute
-                path="/exercises/:id/edit"
-                component={ExerciseEdit}
-                redirect_path="/exercises/index"
-                admin_required={true}
-              />
+            <ProtectedRoute
+              path="/exercises/new"
+              component={ExerciseNew}
+              redirect_path="/exercises/index"
+              admin_required={true}
+            />
+            <ProtectedRoute
+              path="/exercises/:id/edit"
+              component={ExerciseEdit}
+              redirect_path="/exercises/index"
+              admin_required={true}
+            />
             <Route path="/not-found" component={NotFound} />;
             <Route path="/" component={HomePage} />
             <Redirect to="/not-found" />
