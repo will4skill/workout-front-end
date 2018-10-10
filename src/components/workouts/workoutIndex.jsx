@@ -72,7 +72,6 @@ class WorkoutIndex extends Component {
         <Link to="/workouts/new" className="btn btn-primary">
           New Workout
         </Link>
-
         <table className="table table-bordered">
           <thead>
             <tr>

@@ -146,7 +146,6 @@ class CompletedExerciseNew extends Component {
               </select>
               {this.state.errors.exercise_type && <div className="alert alert-danger">{this.state.errors.exercise_type}</div>}
             </div>
-
             <div className="form-group">
               <label htmlFor="exampleInputSets">Sets</label>
               <input
@@ -159,7 +158,6 @@ class CompletedExerciseNew extends Component {
               />
               {this.state.errors.sets && <div className="alert alert-danger">{this.state.errors.sets}</div>}
             </div>
-
             <div className="form-group">
               <label htmlFor="exampleInputReps">Reps</label>
               <input
@@ -172,7 +170,6 @@ class CompletedExerciseNew extends Component {
               />
               {this.state.errors.reps && <div className="alert alert-danger">{this.state.errors.reps}</div>}
             </div>
-
             <div className="form-group">
               <label htmlFor="exampleInputLoad">Load</label>
               <input
@@ -185,7 +182,6 @@ class CompletedExerciseNew extends Component {
               />
               {this.state.errors.load && <div className="alert alert-danger">{this.state.errors.load}</div>}
             </div>
-
             <div className="form-group form-check">
               <input
                 name="unilateral"
@@ -198,7 +194,6 @@ class CompletedExerciseNew extends Component {
               <label className="form-check-label" htmlFor="exampleCheck1">Unilateral?</label>
               {this.state.errors.unilateral && <div className="alert alert-danger">{this.state.errors.unilateral}</div>}
             </div>
-
             <div className="form-group form-check">
               <input
                 name="mum"

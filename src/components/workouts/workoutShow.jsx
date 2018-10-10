@@ -79,18 +79,15 @@ class WorkoutShow extends Component {
     return (
       <React.Fragment>
         <h1>Workout ID: {this.workout_id}</h1>
-
         <Link
           to={"/workouts/" + this.workout_id + "/completed_exercise/new"}
           className="btn btn-primary btn-lg">
           New Exercise
         </Link>
-
         <MuscleMap
           current_muscles={this.getSelectedMuscles()}
           onMuscleSelect={() => {}}
         />
-
         <table className="table table-bordered">
           <thead>
             <tr>

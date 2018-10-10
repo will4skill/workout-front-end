@@ -73,13 +73,11 @@ class ExerciseIndex extends Component {
           <div className="row">
             <div className="col-sm">
               <h1>Exercises</h1>
-
               <MuscleMap
                 current_muscles={[this.state.current_muscle.name]}
                 onMuscleSelect={this.handleMuscleSelect}
               />
             </div>
-
             <div className="col-sm">
               <Link to="/exercises/new" className="btn btn-primary">
                 New Exercise
