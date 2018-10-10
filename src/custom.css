@@ -19,6 +19,14 @@
   text-align: center;
 }
 
+a {
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 10px;
+}
+
 .custom-right-margin {
   margin-right: 10px;
 }

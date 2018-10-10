@@ -16,19 +16,15 @@ const HomePage = () => {
           reviewing, updating and deleting workouts.
         </p>
         <hr className="my-4"/>
-        <p>
-          Click the register button to create a new account. Click the example
-          button to skip registering and log in as an example user.
-        </p>
         <Link
           to="/users/new"
           className="btn btn-danger btn-lg custom-right-margin">
-          Register
+          Register New Account
         </Link>
         <button
           onClick={exampleUserLogin}
           className="btn btn-info btn-lg">
-          Example
+          View Example Account
         </button>
       </div>
       <div className="custom-flex-grow-column"/>
