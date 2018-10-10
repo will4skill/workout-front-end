@@ -36,18 +36,32 @@ class UserIndex extends Component {
         <Link to="/users/new" className="btn btn-primary">
           New User
         </Link>
-        <ul className="list-group">
-          {this.state.users.map(user => (
-            <li key={user._id} className="list-group-item">
-              {user.name} ||| {user.email} ||| admin: {user.admin}
-              <button
-                onClick={() => this.handleDelete(user)}
-                className="btn btn-danger btn-sm">
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
+        <table className="table table-sm table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Admin?</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.users.map(user => (
+              <tr key={user._id}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.admin.toString()}</td>
+                <td>
+                  <button
+                    onClick={() => this.handleDelete(user)}
+                    className="btn btn-danger btn-sm">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </React.Fragment>
     );
   }
