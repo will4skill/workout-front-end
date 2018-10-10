@@ -17,6 +17,7 @@ Additional resources that helped me:
 * [Test for empty object](https://stackoverflow.com/questions/679915/how-do-i-test-for-an-empty-javascript-object)
 * [Sticky footer](https://www.learnenough.com/css-and-layout-tutorial)
 * [Protected Route Component](https://reacttraining.com/react-router/web/example/auth-workflow)
+* [Sort by name](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 
 ## Project Setup
 1. Install Node.js: https://nodejs.org/

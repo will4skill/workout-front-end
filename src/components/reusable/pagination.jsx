@@ -14,7 +14,7 @@ const Pagination = ({ page_size, item_count, current_page, onPageChange }) => {
               className={current_page === 1 ? "page-item disabled" : "page-item"}
               onClick={() => onPageChange(current_page - 1, page_size)}
               >
-              <a className="page-link" to=""><span>&laquo;</span></a>
+              <div className="page-link"><span>&laquo;</span></div>
             </li>
             {pg_num_array.map(page_number => (
               <li
@@ -23,7 +23,7 @@ const Pagination = ({ page_size, item_count, current_page, onPageChange }) => {
                 key={page_number}
                 onClick={() => onPageChange(page_number, page_size)}
               >
-                <a className="page-link" to="">{page_number}</a>
+                <div className="page-link" to="">{page_number}</div>
               </li>
             ))}
             <li
@@ -31,7 +31,7 @@ const Pagination = ({ page_size, item_count, current_page, onPageChange }) => {
                 "page-item disabled" : "page-item" }
               onClick={() => onPageChange(current_page + 1, page_size)}
               >
-              <a className="page-link" to=""><span>&raquo;</span></a>
+              <div className="page-link"><span>&raquo;</span></div>
             </li>
           </ul>
         </nav>}
