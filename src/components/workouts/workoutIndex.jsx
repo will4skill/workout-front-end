@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
 import { getWorkouts, deleteWorkout } from '../../services/workoutService.js';
 import { reformatDate } from '../../utilities/dateUtility.js';
+import { compareDates } from '../../utilities/sortUtility.js';
 import "./workout.css";
 import Pagination from "../reusable/pagination";
 
@@ -14,12 +15,8 @@ class WorkoutIndex extends Component {
 
   async componentDidMount() {
     const { data: workouts } = await getWorkouts();
-    workouts.sort(this.compareDates);
+    workouts.sort(compareDates);
     this.setState({ workouts });
-  }
-
-  compareDates(a, b) {
-    return new Date(b.date) - new Date(a.date);
   }
 
   async handleDelete(selected_workout) {

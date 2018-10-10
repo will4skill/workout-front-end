@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getMuscles, deleteMuscle } from '../../services/muscleService.js';
 import { getCurrentUser } from '../../services/authService';
 import MuscleMap from "../reusable/muscleMap";
+import { compareNames } from '../../utilities/sortUtility.js';
 
 class MuscleIndex extends Component {
   state = {
@@ -12,6 +13,7 @@ class MuscleIndex extends Component {
 
   async componentDidMount() {
     const { data: muscles } = await getMuscles();
+    muscles.sort(compareNames);
     this.setState({ muscles });
   }
 
@@ -81,12 +83,10 @@ class MuscleIndex extends Component {
                 </thead>
                 <tbody>
                   {this.state.muscles.map(muscle => (
-                    <tr
-                      key={muscle._id}
-                      className={muscle.active}
-                      onClick={() => this.handleRowSelect(muscle)}
-                    >
-                      <td>{muscle.name}</td>
+                    <tr key={muscle._id} className={muscle.active}>
+                      <td onClick={() => this.handleRowSelect(muscle)}>
+                        {muscle.name}
+                      </td>
                       <td>
                         <Link
                           to={muscle._id + "/edit"}

@@ -4,6 +4,7 @@ import { getExercises, deleteExercise } from '../../services/exerciseService.js'
 import { getMuscles } from '../../services/muscleService.js';
 import { getCurrentUser } from '../../services/authService';
 import MuscleMap from "../reusable/muscleMap";
+import { compareNames } from '../../utilities/sortUtility.js';
 
 class ExerciseIndex extends Component {
   state = {
@@ -14,6 +15,7 @@ class ExerciseIndex extends Component {
 
   async componentDidMount() {
     const { data: exercises } = await getExercises();
+    exercises.sort(compareNames);
     const { data: muscles } = await getMuscles();
     let muscle_names = [];
 
