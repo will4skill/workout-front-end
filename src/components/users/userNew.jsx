@@ -71,10 +71,7 @@ class UserNew extends Component {
       window.location = '/';
     } catch (exception) {
       if (exception.response && exception.response.status === 400) {
-        console.log("Failure");
-        const errors = { ...this.state.errors };
-        errors.name = exception.response.data;
-        this.setState({ errors });
+        alert(exception.response.data);
       }
     }
   }

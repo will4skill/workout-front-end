@@ -70,8 +70,14 @@ class MuscleEdit extends Component {
       return;
     }
 
-    await updateMuscle(this.state.muscle);
-    this.props.history.push('/muscles/index');
+    try {
+      await updateMuscle(this.state.muscle);
+      this.props.history.push('/muscles/index');
+    } catch (exception) {
+      if (exception.response && exception.response.status === 400) {
+        alert(exception.response.data.errmsg);
+      }
+    }
   }
 
   render() {

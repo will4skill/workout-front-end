@@ -71,8 +71,14 @@ class ExerciseNew extends Component {
       return;
     }
 
-    await saveExercise(this.state.exercise);
-    this.props.history.push('/exercises/index');
+    try {
+      await saveExercise(this.state.exercise);
+      this.props.history.push('/exercises/index');
+    } catch (exception) {
+      if (exception.response && exception.response.status === 400) {
+        alert(exception.response.data.errmsg);
+      }
+    }
   }
 
   render() {

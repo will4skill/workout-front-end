@@ -69,10 +69,8 @@ class Login extends Component {
       const { state } = this.props.location;
       window.location = state ? state.from.pathname : "/";
     } catch(exception) {
-      if (exception.response && exception.response.state === 400){
-        const errors = { ...this.state.errors };
-        errors.username = exception.response.data;
-        this.setState({ errors });
+      if (exception.response && exception.response.status === 400){
+        alert(exception.response.data);
       }
     }
   }

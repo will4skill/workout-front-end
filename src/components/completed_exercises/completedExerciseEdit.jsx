@@ -107,8 +107,14 @@ class CompletedExerciseEdit extends Component {
       return;
     }
 
-    await updateCompletedExercise(this.state.completed_exercise);
-    this.props.history.push("/workouts/" + this.state.completed_exercise.workout_id + "/show");
+    try {
+      await updateCompletedExercise(this.state.completed_exercise);
+      this.props.history.push("/workouts/" + this.state.completed_exercise.workout_id + "/show");
+    } catch (exception) {
+      if (exception.response && exception.response.status === 400) {
+        alert(exception.response.data.errmsg);
+      }
+    }
   }
 
   render() {

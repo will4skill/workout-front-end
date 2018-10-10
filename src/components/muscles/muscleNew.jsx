@@ -55,8 +55,14 @@ class MuscleNew extends Component {
       return;
     }
 
-    await saveMuscle(this.state.value);
-    this.props.history.push('/muscles/index');
+    try {
+      await saveMuscle(this.state.value);
+      this.props.history.push('/muscles/index');
+    } catch (exception) {
+      if (exception.response && exception.response.status === 400) {
+        alert(exception.response.data.errmsg);
+      }
+    }
   }
 
   render() {

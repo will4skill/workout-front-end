@@ -83,9 +83,7 @@ class UserEdit extends Component {
       window.location = '/';
     } catch (exception) {
       if (exception.response && exception.response.status === 400) {
-        const errors = { ...this.state.errors };
-        errors.name = exception.response.data;
-        this.setState({ errors });
+        alert(exception.response.data);
       }
     }
   }

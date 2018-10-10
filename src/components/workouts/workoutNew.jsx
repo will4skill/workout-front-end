@@ -63,8 +63,14 @@ class WorkoutNew extends Component {
     this.setState({ errors: errors || {} });
     if (errors) { return; }
 
-    await saveWorkout(this.state.workout);
-    this.props.history.push('/users/me/show');
+    try {
+      await saveWorkout(this.state.workout);
+      this.props.history.push('/workouts/index');
+    } catch (exception) {
+      if (exception.response && exception.response.status === 400) {
+        alert(exception.response.data.errmsg);
+      }
+    }
   }
 
   render() {
