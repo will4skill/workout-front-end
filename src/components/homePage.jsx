@@ -18,12 +18,12 @@ const HomePage = () => {
         <hr className="my-4"/>
         <Link
           to="/users/new"
-          className="btn btn-danger btn-lg custom-right-margin">
+          className="btn btn-danger btn-lg custom-right-margin custom-add-margin-top">
           Register New Account
         </Link>
         <button
           onClick={exampleUserLogin}
-          className="btn btn-info btn-lg">
+          className="btn btn-info btn-lg custom-add-margin-top">
           View Example Account
         </button>
       </div>

@@ -19,11 +19,7 @@
   text-align: center;
 }
 
-a {
-  margin-top: 10px;
-}
-
-button {
+.custom-add-margin-top {
   margin-top: 10px;
 }
 
