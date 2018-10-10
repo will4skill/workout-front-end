@@ -83,6 +83,7 @@ class WorkoutIndex extends Component {
               <th scope="col">Exercises</th>
               <th scope="col"></th>
               <th scope="col"></th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -96,9 +97,15 @@ class WorkoutIndex extends Component {
                 <td>{reformatDate(workout.date)}</td>
                 <td>{workout.exercises.length}</td>
                 <td>
+                  <Link to={"/workouts/" + workout._id + "/completed_exercise/new"}
+                    className="btn btn-success btn-sm">
+                    Add Exercise
+                  </Link>
+                </td>
+                <td>
                   <Link to={"/workouts/" + workout._id + "/edit"}
                     className="btn btn-info btn-sm">
-                    Edit
+                    Edit Workout
                   </Link>
                 </td>
                 <td>

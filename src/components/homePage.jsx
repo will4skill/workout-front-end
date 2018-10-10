@@ -27,7 +27,7 @@ const HomePage = () => {
         </Link>
         <button
           onClick={exampleUserLogin}
-          className="btn btn-primary btn-lg">
+          className="btn btn-info btn-lg">
           Example
         </button>
       </div>
