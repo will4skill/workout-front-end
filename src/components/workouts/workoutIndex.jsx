@@ -4,7 +4,8 @@ import { getWorkouts, deleteWorkout } from '../../services/workoutService.js';
 import { reformatDate } from '../../utilities/dateUtility.js';
 import { compareDates } from '../../utilities/sortUtility.js';
 import "./workout.css";
-import Pagination from "../reusable/pagination";
+import Pagination from '../reusable/pagination';
+import Spinner from '../reusable/spinner';
 
 class WorkoutIndex extends Component {
   state = {
@@ -68,7 +69,7 @@ class WorkoutIndex extends Component {
     const { sort_direction, current_page } = this.state;
 
     return (
-      <React.Fragment>
+      <Spinner ready={!!this.state.workouts.length}>
         <Link to="/workouts/new" className="btn btn-primary">
           New Workout
         </Link>
@@ -126,7 +127,7 @@ class WorkoutIndex extends Component {
           current_page={this.state.current_page}
           onPageChange={this.handlePageChange}
         />
-      </React.Fragment>
+      </Spinner>
     );
   }
 }

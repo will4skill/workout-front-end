@@ -2,7 +2,8 @@ import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
 import { getMuscles, deleteMuscle } from '../../services/muscleService.js';
 import { getCurrentUser } from '../../services/authService';
-import MuscleMap from "../reusable/muscleMap";
+import MuscleMap from '../reusable/muscleMap';
+import Spinner from '../reusable/spinner';
 import { compareNames } from '../../utilities/sortUtility.js';
 
 class MuscleIndex extends Component {
@@ -59,7 +60,7 @@ class MuscleIndex extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Spinner ready={!!this.state.muscles.length}>
         <div className="container">
           <div className="row">
             <div className="col-sm">
@@ -106,7 +107,7 @@ class MuscleIndex extends Component {
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </Spinner>
     );
   }
 }

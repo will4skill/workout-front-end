@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
 import { getUsers, deleteUser } from '../../services/userService.js';
+import Spinner from '../reusable/spinner';
 
 class UserIndex extends Component {
   state = {
@@ -31,7 +32,7 @@ class UserIndex extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Spinner ready={!!this.state.users.length}>
         <h1>Users</h1>
         <Link to="/users/new" className="btn btn-primary">
           New User
@@ -62,7 +63,7 @@ class UserIndex extends Component {
             ))}
           </tbody>
         </table>
-      </React.Fragment>
+      </Spinner>
     );
   }
 }

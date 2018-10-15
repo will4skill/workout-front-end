@@ -18,6 +18,7 @@ Additional resources that helped me:
 * [Sticky footer](https://www.learnenough.com/css-and-layout-tutorial)
 * [Protected Route Component](https://reacttraining.com/react-router/web/example/auth-workflow)
 * [Sort by name](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+* [CSS Spinner](https://www.w3schools.com/howto/howto_css_loader.asp)
 
 ## Project Setup
 1. Install Node.js: https://nodejs.org/

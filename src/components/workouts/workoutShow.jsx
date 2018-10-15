@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { getWorkout } from '../../services/workoutService.js';
 import { getMuscles } from '../../services/muscleService.js';
 import { deleteCompletedExercise } from '../../services/completedExerciseService.js';
-import MuscleMap from "../reusable/muscleMap";
+import MuscleMap from '../reusable/muscleMap';
+import Spinner from '../reusable/spinner';
 
 class WorkoutShow extends Component {
   state = {
@@ -77,7 +78,7 @@ class WorkoutShow extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Spinner ready={!!this.state.muscles.length}>
         <h1>Workout ID: {this.workout_id}</h1>
         <Link
           to={"/workouts/" + this.workout_id + "/completed_exercise/new"}
@@ -129,7 +130,7 @@ class WorkoutShow extends Component {
             ))}
           </tbody>
         </table>
-      </React.Fragment>
+      </Spinner>
     );
   }
 }

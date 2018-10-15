@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { getExercises, deleteExercise } from '../../services/exerciseService.js';
 import { getMuscles } from '../../services/muscleService.js';
 import { getCurrentUser } from '../../services/authService';
-import MuscleMap from "../reusable/muscleMap";
+import MuscleMap from '../reusable/muscleMap';
+import Spinner from '../reusable/spinner';
 import { compareNames } from '../../utilities/sortUtility.js';
 
 class ExerciseIndex extends Component {
@@ -68,7 +69,7 @@ class ExerciseIndex extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Spinner ready={!!this.state.exercises.length}>
         <div className="container">
           <div className="row">
             <div className="col-sm">
@@ -117,7 +118,7 @@ class ExerciseIndex extends Component {
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </Spinner>
     );
   }
 }
