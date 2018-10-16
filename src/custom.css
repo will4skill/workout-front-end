@@ -60,10 +60,14 @@ form {
   }
 }
 
-.custom-hide {
-  max-height: 0;
-  overflow: hidden;
-  transition: all 0.5s ease-in-out;
+@media only screen and (max-width:991px) {
+  /*This is necessary so that the nav-links don't default to hidden on larger
+    screens. I chose 991px to match the Bootstrap breakpoint*/
+  .custom-hide {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+  }
 }
 
 .custom-show {
