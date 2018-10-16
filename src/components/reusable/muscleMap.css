@@ -21,3 +21,9 @@ path:not(.silhouette):hover {
   fill-opacity: 1;
   fill: #E50B0B;
 }
+
+@media only screen and (max-width:600px) {
+  svg {
+    width: 50%;
+  }
+}

@@ -19,6 +19,7 @@ Additional resources that helped me:
 * [Protected Route Component](https://reacttraining.com/react-router/web/example/auth-workflow)
 * [Sort by name](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 * [CSS Spinner](https://www.w3schools.com/howto/howto_css_loader.asp)
+* [Media Queries](https://stackoverflow.com/questions/8549529/what-is-the-difference-between-screen-and-only-screen-in-media-queries)
 
 ## Project Setup
 1. Install Node.js: https://nodejs.org/

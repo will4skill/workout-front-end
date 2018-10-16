@@ -5,6 +5,7 @@ import { getMuscles } from '../../services/muscleService.js';
 import { deleteCompletedExercise } from '../../services/completedExerciseService.js';
 import MuscleMap from '../reusable/muscleMap';
 import Spinner from '../reusable/spinner';
+import { reformatDate } from '../../utilities/dateUtility.js';
 
 class WorkoutShow extends Component {
   state = {
@@ -79,7 +80,7 @@ class WorkoutShow extends Component {
   render() {
     return (
       <Spinner ready={!!this.state.muscles.length}>
-        <h1>Workout ID: {this.workout_id}</h1>
+        <h3>Workout Date: {reformatDate(this.state.workout.date)}</h3>
         <Link
           to={"/workouts/" + this.workout_id + "/completed_exercise/new"}
           className="btn btn-primary btn-lg">
