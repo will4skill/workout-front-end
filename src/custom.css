@@ -1,6 +1,7 @@
 .custom-container {
   width: 100%;
   padding-top: 30px;
+  padding-bottom: 30px;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -35,11 +36,48 @@
   background-color: transparent;
 }
 
+form {
+  width: 500px;
+  margin: auto;
+}
+
 @media only screen and (max-width:600px) {
+  .custom-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
   .display-4 {
     font-size: 2.5rem;
   }
-  h3, .h3 {
+  h3 {
     font-size: 1.50rem;
   }
+  form {
+    width: 90%;
+    margin: auto;
+  }
 }
+
+
+/* .navbar-collapse {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+  transition: all 2s ease-in-out;
+  background-color: blue;
+  position: relative;
+  z-index: 99;
+} */
+
+/* .collapse {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: height 1s ease;
+} */
+
+/* .collapse {
+  max-height: 1000px;
+} */

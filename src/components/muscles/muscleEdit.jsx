@@ -83,8 +83,8 @@ class MuscleEdit extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
+        <form onSubmit={this.handleSubmit} className="card bg-light">
+          <div className="card-body">
             <h4>Edit Muscle</h4>
             <div className="form-group">
               <label htmlFor="inlineFormInputName">Name</label>

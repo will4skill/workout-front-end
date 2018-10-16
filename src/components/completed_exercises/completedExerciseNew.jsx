@@ -109,8 +109,8 @@ class CompletedExerciseNew extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
+        <form onSubmit={this.handleSubmit} className="card bg-light">
+          <div className="card-body">
             <h4>New Completed Exercise</h4>
             <div className="form-group">
               <label htmlFor="inputGroupExerciseId">Exercise</label>
