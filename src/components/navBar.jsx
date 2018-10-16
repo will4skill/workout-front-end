@@ -28,12 +28,9 @@ class NavBar extends Component {
           <span className="navbar-toggler-icon"></span>
         </button>
         <Link className="navbar-brand" to="/">WorkoutLogger</Link>
-        <div
-          className={this.state.show ? "navbar-collapse" : "navbar-collapse collapse"}
-          id="navbarNav"
-          >
+        <div className="navbar-collapse" id="navbarNav">
           <div
-            className="navbar-nav"
+            className={"navbar-nav custom-" + (this.state.show ? "show" : "hide")}
             onClick={this.hideDropdown}
           >
             {!user && (
