@@ -12,6 +12,10 @@ class NavBar extends Component {
     this.setState({show});
   };
 
+  hideDropdown = () => {
+    this.setState({show: false});
+  };
+
   render() {
     const user = getCurrentUser();
 
@@ -28,7 +32,10 @@ class NavBar extends Component {
           className={this.state.show ? "navbar-collapse" : "navbar-collapse collapse"}
           id="navbarNav"
           >
-          <div className="navbar-nav">
+          <div
+            className="navbar-nav"
+            onClick={this.hideDropdown}
+          >
             {!user && (
               <React.Fragment>
                 <NavLink className="nav-item nav-link" to="/login">
