@@ -4,7 +4,7 @@ import { getCurrentUser } from '../services/authService';
 
 class NavBar extends Component {
   state = {
-    show: false
+    show: true
   };
 
   handleToggler = () => {
