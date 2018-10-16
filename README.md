@@ -20,8 +20,8 @@ Additional resources that helped me:
 * [Sort by name](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 * [CSS Spinner](https://www.w3schools.com/howto/howto_css_loader.asp)
 * [Media Queries](https://stackoverflow.com/questions/8549529/what-is-the-difference-between-screen-and-only-screen-in-media-queries)
-[Animated Dropdown](https://www.learnenough.com/css-and-layout-tutorial?single_page=1#sec-details-mobile-dropdown)
-[CSS Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions#Defining_transitions)
+* [Animated Dropdown](https://www.learnenough.com/css-and-layout-tutorial?single_page=1#sec-details-mobile-dropdown)
+* [CSS Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions#Defining_transitions)
 
 ## Project Setup
 1. Install Node.js: https://nodejs.org/
