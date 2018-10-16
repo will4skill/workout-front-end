@@ -25,5 +25,8 @@ path:not(.silhouette):hover {
 @media only screen and (max-width:600px) {
   svg {
     width: 50%;
+    height: 50%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 }

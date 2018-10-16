@@ -35,31 +35,11 @@
   background-color: transparent;
 }
 
-/* .App {
-  text-align: center;
+@media only screen and (max-width:600px) {
+  .display-4 {
+    font-size: 2.5rem;
+  }
+  h3, .h3 {
+    font-size: 1.50rem;
+  }
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */
