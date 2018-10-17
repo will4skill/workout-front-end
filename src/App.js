@@ -100,7 +100,7 @@ class App extends Component {
             />
             <ProtectedRoute
               path="/exercises/index"
-              component={ExerciseFinder}
+              component={ExerciseIndex}
               redirect_path="/login"
             />
             <ProtectedRoute
@@ -111,7 +111,7 @@ class App extends Component {
             />
             <ProtectedRoute
               path="/exercises/:id/edit"
-              component={ExerciseIndex
+              component={ExerciseEdit}
               redirect_path="/exercises/index"
               admin_required={true}
             />

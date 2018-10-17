@@ -1,9 +1,9 @@
 .spinner {
-  border: 10px solid lightgrey;
-  border-top: 10px solid #007bff;
+  border: 5px solid lightgrey;
+  border-top: 5px solid #007bff;
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  width: 60px;
+  height: 60px;
   margin: auto;
   animation: spinner 2s linear infinite;
 }
