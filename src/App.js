@@ -84,6 +84,7 @@ class App extends Component {
               path="/muscles/index"
               component={MuscleIndex}
               redirect_path="/login"
+              admin_required={true}
             />
             <ProtectedRoute
               path="/muscles/new"

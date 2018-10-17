@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
 import { getMuscles, deleteMuscle } from '../../services/muscleService.js';
-import { getCurrentUser } from '../../services/authService';
+// import { getCurrentUser } from '../../services/authService';
 import MuscleMap from '../reusable/muscleMap';
 import Spinner from '../reusable/spinner';
 import { compareNames } from '../../utilities/sortUtility.js';
@@ -19,10 +19,10 @@ class MuscleIndex extends Component {
   }
 
   async handleDelete(selected_muscle) {
-    if (!getCurrentUser().admin) {
-      alert("Access Denied, Admin Only");
-      return;
-    }
+    // if (!getCurrentUser().admin) {
+    //   alert("Access Denied, Admin Only");
+    //   return;
+    // }
 
     const old_muscles = this.state.muscles;
     const new_muscles = old_muscles.filter(muscle => {
