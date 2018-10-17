@@ -68,36 +68,51 @@ class ExerciseIndex extends Component {
   };
 
   render() {
+    const exercises = this.generateExercises();
     return (
       <Spinner ready={!!this.state.exercises.length}>
         <div className="container">
           <div className="row">
             <div className="col-sm">
-              <h1>Exercises</h1>
-              <h4>Selected Muscle: {this.state.current_muscle.name}</h4>
+              <h4 className="text-capitalize">
+                {this.state.current_muscle.name ?
+                  "Selected Muscle: " + this.state.current_muscle.name :
+                  "Select a muscle"
+                }
+              </h4>
               <MuscleMap
                 current_muscles={[this.state.current_muscle.name]}
                 onMuscleSelect={this.handleMuscleSelect}
               />
             </div>
             <div className="col-sm">
-              <Link to="/exercises/new" className="btn btn-primary">
-                New Exercise
-              </Link>
               <table className="table table-sm table-bordered">
                 <thead>
                   <tr>
-                    <th scope="col">Exercise</th>
-                    <th scope="col">Primary Muscle</th>
+                    <th scope="col">
+                      Exercises <span className="badge badge-pill badge-primary">
+                        {exercises.length}</span>
+                    </th>
                     <th scope="col"></th>
-                    <th scope="col"></th>
+                    {/* <th scope="col">Primary Muscle</th> */}
+                    <th scope="col" colSpan="2">
+                      <Link to="/exercises/new" className="btn btn-primary">
+                        New Exercise
+                      </Link>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {this.generateExercises().map(exercise => (
+                  {exercises.map(exercise => (
                     <tr key={exercise._id}>
                       <td>{exercise.name}</td>
-                      <td>{exercise.muscle_name}</td>
+                      <td>
+                        <a
+                          href={"https://www.google.com/search?q=" + exercise.name}
+                          className="fa fa-google">
+                        </a>
+                      </td>
+                      {/* <td>{exercise.muscle_name}</td> */}
                       <td>
                         <Link
                           to={exercise._id + "/edit"}
