@@ -53,7 +53,6 @@ Additional resources that helped me:
 /workouts/index|WorkoutIndex|
 /workouts/new|WorkoutNew|
 /workouts/:id/edit|WorkoutEdit|
-/workouts/:id/show|WorkoutShow|
 /workouts/:id/completed_exercise|CompletedExerciseNew|
 
 ### CompletedExercises Resource
