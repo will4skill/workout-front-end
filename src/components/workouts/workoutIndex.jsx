@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { getWorkouts, deleteWorkout } from '../../services/workoutService.js';
 import { deleteCompletedExercise } from '../../services/completedExerciseService.js';
 import { getMuscles } from '../../services/muscleService.js';
-import { reformatDate } from '../../utilities/dateUtility.js';
 import { compareDates } from '../../utilities/sortUtility.js';
 import "./workout.css";
 import Pagination from '../reusable/pagination';
 import Spinner from '../reusable/spinner';
 import MuscleMap from '../reusable/muscleMap';
+import WorkoutHead from './workoutHead'
+import WorkoutBody from './workoutBody';
 
 class WorkoutIndex extends Component {
   state = {
@@ -26,9 +27,12 @@ class WorkoutIndex extends Component {
     this.setState({ workouts, muscles });
   }
 
-  async handleWorkoutDelete(selected_workout) {
-    const response = window.confirm("Are you sure you want to delete this workout?.");
-    if (response === false) {
+  confirmDelete(name) {
+    return window.confirm(`Are you sure you want to delete this ${name}?`);
+  }
+
+  handleWorkoutDelete = async selected_workout => {
+    if (this.confirmDelete("workout") === false) {
       return;
     }
 
@@ -46,13 +50,13 @@ class WorkoutIndex extends Component {
       }
       this.setState({ workouts: old_workouts });
     }
-  }
+  };
 
-  async handleExerciseDelete(workout_index, selected_completed_exercise) {
-    const response = window.confirm("Are you sure you want to delete this exercise?.");
-    if (response === false) {
+  handleExerciseDelete = async (workout_index, selected_completed_exercise) => {
+    if (this.confirmDelete("exercise") === false) {
       return;
     }
+
     const old_completed_exercises = this.state.workouts[workout_index].exercises;
 
     const new_completed_exercises = old_completed_exercises.filter(completed_exercise => {
@@ -101,7 +105,7 @@ class WorkoutIndex extends Component {
     return workout_slice;
   }
 
-  handleWorkoutSelect(workout) {
+  handleWorkoutSelect = workout => {
     if (workout === this.state.current_workout) {
       workout = {};
     }
@@ -143,68 +147,28 @@ class WorkoutIndex extends Component {
           current_muscles={this.getSelectedMuscles()}
           onMuscleSelect={() => {}}
         />
-        <Link to="/workouts/new" className="btn btn-primary">
-          New Workout
-        </Link>
+
+        <Link to="/workouts/new" className="btn btn-primary">New Workout</Link>
+
         <button onClick={this.toggleSort} className="sort">
           {"Sort by date "}
           <i className={"fa fa-sort-" + sort_direction}></i>
         </button>
 
         {this.generatePage(current_page, page_size).map((workout,index) => (
-          <div className="accordion" key={workout._id}>
-            <div className="card">
-              <div
-                className="card-header"
-                id="headingOne"
-                type="button"
-                data-target="#collapseOne"
-                onClick={() => this.handleWorkoutSelect(workout)}
-              >
-                <h5 className="mb-0">
-                  <Link to={"/workouts/" + workout._id + "/show"}>
-                    {reformatDate(workout.date)}
-                  </Link>
-                  <span className="badge badge-pill badge-primary">
-                    {workout.exercises.length}
-                  </span>
-                  <Link to={"/workouts/" + workout._id + "/edit"}
-                    className="btn btn-info">
-                    <i className="fa fa-pencil-square-o"></i>
-                    {/* <i className="fa fa-cog"></i> */}
-                  </Link>
-                  <Link to={"/workouts/" + workout._id + "/completed-exercise/new"}
-                    className="btn btn-success">
-                    <i className="fa fa-plus"></i>
-                  </Link>
-                  <button
-                    onClick={() => this.handleWorkoutDelete(workout)}
-                    className="btn btn-danger">
-                    <i className="fa fa-trash"></i>
-                  </button>
-                </h5>
-              </div>
-              {workout.exercises.map(exercise => (
-                <div key={exercise._id} id="collapseOne" className={workout === this.state.current_workout ? "custom-show" : "custom-hide-2"}>
-                  <div className="card-body">
-                    {exercise.exercise_id.name}: {exercise.sets}x{exercise.reps} {exercise.load}lbs {exercise.exercise_type}
-                    {exercise.unilateral ? <span className="badge badge-secondary">U</span> : ""}
-                    {exercise.mum ? <span className="badge badge-secondary">M</span> : ""}
-                    <Link to={"/completed_exercise/" + exercise._id + "/edit"}
-                      className="btn btn-info btn-sm">
-                      <i className="fa fa-pencil-square-o"></i>
-                      {/* <i className="fa fa-cog"></i> */}
-                    </Link>
-                    <button
-                      className="btn btn-danger btn-sm"
-                      onClick={() => this.handleExerciseDelete(index, exercise)}
-                      >
-                      <i className="fa fa-trash"></i>
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div key={workout._id} className={"card " + (workout === this.state.current_workout ? "custom-card-highlight" : "")}>
+            <WorkoutHead
+              workout={workout}
+              onWorkoutSelect={this.handleWorkoutSelect}
+              onWorkoutDelete={this.handleWorkoutDelete}
+            />
+
+            <WorkoutBody
+              workout={workout}
+              current_workout={this.state.current_workout}
+              onExerciseDelete={this.handleExerciseDelete}
+              index={index}
+            />
           </div>
         ))}
 
