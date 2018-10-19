@@ -32,14 +32,10 @@ class WorkoutIndex extends Component {
   }
 
   handleWorkoutDelete = async selected_workout => {
-    if (this.confirmDelete("workout") === false) {
-      return;
-    }
-
+    if (!this.confirmDelete("workout")) { return; }
     const old_workouts = this.state.workouts;
-    const new_workouts = old_workouts.filter(workout => {
-      return workout._id !== selected_workout._id;
-    });
+    const new_workouts = old_workouts.filter(w => w._id !== selected_workout._id);
+
     this.setState({ workouts: new_workouts });
 
     try {
@@ -52,28 +48,22 @@ class WorkoutIndex extends Component {
     }
   };
 
-  handleExerciseDelete = async (workout_index, selected_completed_exercise) => {
-    if (this.confirmDelete("exercise") === false) {
-      return;
-    }
-
-    const old_completed_exercises = this.state.workouts[workout_index].exercises;
-
-    const new_completed_exercises = old_completed_exercises.filter(completed_exercise => {
-      return completed_exercise._id !== selected_completed_exercise._id;
-    });
-
+  handleExerciseDelete = async (workout_index, selected_exercise) => {
+    if (!this.confirmDelete("exercise")) { return; }
+    const old_exercises = this.state.workouts[workout_index].exercises;
+    const new_exercises = old_exercises.filter(e => e._id !== selected_exercise._id);
     const workouts = [ ...this.state.workouts ];
-    workouts[workout_index].exercises = new_completed_exercises;
+
+    workouts[workout_index].exercises = new_exercises;
     this.setState({ workouts });
 
     try {
-      await deleteCompletedExercise(selected_completed_exercise._id);
+      await deleteCompletedExercise(selected_exercise._id);
     } catch (exception) {
       if (exception.response && exception.response.status === 404) {
         alert("This exercise has already been deleted.");
       }
-      workouts[workout_index].exercises = old_completed_exercises
+      workouts[workout_index].exercises = old_exercises
       this.setState({ workouts });
     }
   }
@@ -114,12 +104,8 @@ class WorkoutIndex extends Component {
 
   getSelectedMuscles() {
     let muscle_ids = [];
-
-    if (this.state.current_workout.exercises === undefined) {
-      return [];
-    }
+    if (this.state.current_workout.exercises === undefined) { return []; }
     const completed_exercises = this.state.current_workout.exercises;
-
     const muscles = this.state.muscles;
     let muscle_names = {};
     let selected_muscles = [];
@@ -155,8 +141,8 @@ class WorkoutIndex extends Component {
           <i className={"fa fa-sort-" + sort_direction}></i>
         </button>
 
-        {this.generatePage(current_page, page_size).map((workout,index) => (
-          <div key={workout._id} className={"card " + (workout === this.state.current_workout ? "custom-card-highlight" : "")}>
+        {this.generatePage(current_page, page_size).map((workout, index) => (
+          <div key={workout._id} className="card">
             <WorkoutHead
               workout={workout}
               onWorkoutSelect={this.handleWorkoutSelect}

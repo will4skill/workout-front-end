@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const WorkoutBody = ({ workout, current_workout, onExerciseDelete, index }) => {
   const btn = "btn-sm btn btn-";
@@ -16,7 +16,7 @@ const WorkoutBody = ({ workout, current_workout, onExerciseDelete, index }) => {
     const type = ex.exercise_type;
     return `${info} ${type}`;
   }
-  
+
   return (
     <div>
       {workout.exercises.map(exercise => (
