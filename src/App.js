@@ -11,7 +11,6 @@ import UserShow from './components/users/userShow';
 import WorkoutIndex from './components/workouts/workoutIndex';
 import WorkoutNew from './components/workouts/workoutNew';
 import WorkoutEdit from './components/workouts/workoutEdit';
-import WorkoutShow from './components/workouts/workoutShow';
 import CompletedExerciseNew from './components/completed_exercises/completedExerciseNew';
 import CompletedExerciseEdit from './components/completed_exercises/completedExerciseEdit';
 import MuscleIndex from './components/muscles/muscleIndex';
@@ -63,11 +62,6 @@ class App extends Component {
             <ProtectedRoute
               path="/workouts/:id/edit"
               component={WorkoutEdit}
-              redirect_path="/login"
-            />
-            <ProtectedRoute
-              path="/workouts/:id/show"
-              component={WorkoutShow}
               redirect_path="/login"
             />
             <ProtectedRoute

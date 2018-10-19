@@ -4,7 +4,7 @@ import { getWorkouts, deleteWorkout } from '../../services/workoutService.js';
 import { deleteCompletedExercise } from '../../services/completedExerciseService.js';
 import { getMuscles } from '../../services/muscleService.js';
 import { compareDates } from '../../utilities/sortUtility.js';
-import "./workout.css";
+import './workout.css';
 import Pagination from '../reusable/pagination';
 import Spinner from '../reusable/spinner';
 import MuscleMap from '../reusable/muscleMap';
