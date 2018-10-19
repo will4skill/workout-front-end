@@ -22,6 +22,8 @@ Additional resources that helped me:
 * [Media Queries](https://stackoverflow.com/questions/8549529/what-is-the-difference-between-screen-and-only-screen-in-media-queries)
 * [Animated Dropdown](https://www.learnenough.com/css-and-layout-tutorial?single_page=1#sec-details-mobile-dropdown)
 * [CSS Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions#Defining_transitions)
+* [Window.confirm](https://www.w3schools.com/jsref/met_win_confirm.asp)
+* [Window.confirm in React](https://gist.github.com/primaryobjects/aacf6fa49823afb2f6ff065790a5b402)
 
 ## Project Setup
 1. Install Node.js: https://nodejs.org/

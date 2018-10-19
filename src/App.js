@@ -71,7 +71,7 @@ class App extends Component {
               redirect_path="/login"
             />
             <ProtectedRoute
-              path="/workouts/:id/completed-exercise"
+              path="/workouts/:id/completed_exercise"
               component={CompletedExerciseNew}
               redirect_path="/login"
             />
