@@ -11,7 +11,8 @@ class ExerciseIndex extends Component {
   state = {
     exercises: [],
     muscles: [],
-    current_muscle: {}
+    current_muscle: {},
+    api_response: false
   };
 
   async componentDidMount() {
@@ -28,7 +29,7 @@ class ExerciseIndex extends Component {
       exercise.muscle_name = muscle_names[exercise.muscle_id];
     }
 
-    this.setState({ exercises, muscles });
+    this.setState({ exercises, muscles, api_response: true });
   }
 
   async handleDelete(selected_exercise) {
@@ -70,7 +71,7 @@ class ExerciseIndex extends Component {
   render() {
     const exercises = this.generateExercises();
     return (
-      <Spinner ready={!!this.state.exercises.length}>
+      <Spinner ready={this.state.api_response}>
         <div className="container">
           <div className="row">
             <div className="col-sm">

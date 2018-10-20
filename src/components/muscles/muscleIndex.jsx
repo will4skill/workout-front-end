@@ -9,13 +9,14 @@ import { compareNames } from '../../utilities/sortUtility.js';
 class MuscleIndex extends Component {
   state = {
     muscles: [],
-    current_muscle: {}
+    current_muscle: {},
+    api_response: false
   };
 
   async componentDidMount() {
     const { data: muscles } = await getMuscles();
     muscles.sort(compareNames);
-    this.setState({ muscles });
+    this.setState({ muscles, api_response: true });
   }
 
   async handleDelete(selected_muscle) {
@@ -60,7 +61,7 @@ class MuscleIndex extends Component {
 
   render() {
     return (
-      <Spinner ready={!!this.state.muscles.length}>
+      <Spinner ready={this.state.api_response}>
         <div className="container">
           <div className="row">
             <div className="col-sm">

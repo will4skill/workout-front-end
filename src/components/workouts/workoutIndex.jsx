@@ -17,14 +17,15 @@ class WorkoutIndex extends Component {
     current_page: 1,
     sort_direction: "desc",
     current_workout: {},
-    muscles: []
+    muscles: [],
+    api_response: false
   };
 
   async componentDidMount() {
     const { data: muscles } = await getMuscles();
     const { data: workouts } = await getWorkouts();
     workouts.sort(compareDates);
-    this.setState({ workouts, muscles });
+    this.setState({ workouts, muscles, api_response: true });
   }
 
   confirmDelete(name) {
@@ -132,7 +133,7 @@ class WorkoutIndex extends Component {
           } = this.state;
 
     return (
-      <Spinner ready={!!workouts.length}>
+      <Spinner ready={this.state.api_response}>
         <MuscleMap
           current_muscles={this.getSelectedMuscles()}
           onMuscleSelect={() => {}}

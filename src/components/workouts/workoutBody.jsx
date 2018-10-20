@@ -41,7 +41,6 @@ const WorkoutBody = ({ workout, current_workout, onExerciseDelete, index }) => {
                 </button>
               </div>
             </div>
-            {/* <hr/> */}
           </div>
         </div>
       ))}

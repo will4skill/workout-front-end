@@ -5,12 +5,13 @@ import Spinner from '../reusable/spinner';
 
 class UserIndex extends Component {
   state = {
-    users: []
+    users: [],
+    api_response: false
   };
 
   async componentDidMount() {
     const { data: users } = await getUsers();
-    this.setState({ users });
+    this.setState({ users, api_response: true });
   }
 
   async handleDelete(selected_user) {
@@ -32,7 +33,7 @@ class UserIndex extends Component {
 
   render() {
     return (
-      <Spinner ready={!!this.state.users.length}>
+      <Spinner ready={this.state.api_response}>
         <h1>Users</h1>
         <Link to="/users/new" className="btn btn-primary">
           New User
