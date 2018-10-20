@@ -125,24 +125,32 @@ class WorkoutIndex extends Component {
 
   render() {
     const page_size = 5;
-    const { sort_direction, current_page } = this.state;
+    const { sort_direction,
+            current_page,
+            current_workout,
+            workouts
+          } = this.state;
 
     return (
-      <Spinner ready={!!this.state.workouts.length}>
+      <Spinner ready={!!workouts.length}>
         <MuscleMap
           current_muscles={this.getSelectedMuscles()}
           onMuscleSelect={() => {}}
         />
 
-        <Link to="/workouts/new" className="btn btn-primary">New Workout</Link>
-
-        <button onClick={this.toggleSort} className="sort">
+        <Link to="/workouts/new" className="btn btn-primary mr-1">
+          New Workout
+        </Link>
+        <button onClick={this.toggleSort} className="btn btn-info btn-sm">
           {"Sort by date "}
           <i className={"fa fa-sort-" + sort_direction}></i>
         </button>
 
         {this.generatePage(current_page, page_size).map((workout, index) => (
-          <div key={workout._id} className="card">
+          <div
+            key={workout._id}
+            className={"my-1 card " + (workout === current_workout ? "border-primary" : "")}
+          >
             <WorkoutHead
               workout={workout}
               onWorkoutSelect={this.handleWorkoutSelect}
@@ -151,7 +159,7 @@ class WorkoutIndex extends Component {
 
             <WorkoutBody
               workout={workout}
-              current_workout={this.state.current_workout}
+              current_workout={current_workout}
               onExerciseDelete={this.handleExerciseDelete}
               index={index}
             />
@@ -160,8 +168,8 @@ class WorkoutIndex extends Component {
 
         <Pagination
           page_size={page_size}
-          item_count={this.state.workouts.length}
-          current_page={this.state.current_page}
+          item_count={workouts.length}
+          current_page={current_page}
           onPageChange={this.handlePageChange}
         />
       </Spinner>

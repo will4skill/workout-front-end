@@ -98,7 +98,7 @@ class CompletedExerciseNew extends Component {
 
     try {
       await saveCompletedExercise(this.state.completed_exercise);
-      this.props.history.push("/workouts/" + this.state.completed_exercise.workout_id + "/show");
+      this.props.history.push("/workouts/index");
     } catch (exception) {
       if (exception.response && exception.response.status === 400) {
         alert(exception.response.data.errmsg);

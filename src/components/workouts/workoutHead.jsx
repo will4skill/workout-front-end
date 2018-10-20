@@ -10,23 +10,24 @@ const WorkoutBody = ({ workout, onWorkoutSelect, onWorkoutDelete }) => {
   return (
     <div
       className="card-header"
-      type="button"
       onClick={() => onWorkoutSelect(workout)}>
-      <h5>
-        <Link to={`${url_prefix}/show`}>{reformatDate(workout.date)}</Link>
+      <div className="">
+        <span className="font-weight-bold">{reformatDate(workout.date)} </span>
         <span className="badge badge-pill badge-primary">
           {workout.exercises.length}
         </span>
-        <Link to={`${url_prefix}/edit`} className={`${btn}info`}>
-          <i className={`${fa}pencil-square-o`}></i>
-        </Link>
-        <Link to={`${url_prefix}/completed_exercise/new`} className={`${btn}success`}>
-          <i className={`${fa}plus`}></i>
-        </Link>
-        <button onClick={() => onWorkoutDelete(workout)} className={`${btn}danger`}>
-          <i className={`${fa}trash`}></i>
-        </button>
-      </h5>
+        <div className="float-right">
+          <Link to={`${url_prefix}/edit`} className={`${btn}info`}>
+            <i className={`${fa}pencil-square-o`}></i>
+          </Link>
+          <Link to={`${url_prefix}/completed_exercise/new`} className={`${btn}success mx-1`}>
+            <i className={`${fa}plus`}></i>
+          </Link>
+          <button onClick={() => onWorkoutDelete(workout)} className={`${btn}danger`}>
+            <i className={`${fa}trash`}></i>
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

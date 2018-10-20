@@ -8,7 +8,7 @@ const Pagination = ({ page_size, item_count, current_page, onPageChange }) => {
   return (
     <React.Fragment>
       {(page_size <= item_count) &&
-        <nav>
+        <nav className="custom-pagination-margin">
           <ul className="pagination">
             <li
               className={current_page === 1 ? "page-item disabled" : "page-item"}

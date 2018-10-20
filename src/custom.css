@@ -1,7 +1,7 @@
 .custom-container {
   width: 100%;
   padding-top: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 0px;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -81,6 +81,6 @@ form {
   transition: all 0.5s ease-in-out;
 }
 
-/* .custom-card-highlight {
-  background-color: blue;
-} */
+.custom-pagination-margin {
+  margin-top: 25px;
+}
