@@ -66,6 +66,7 @@ form {
   .custom-hide {
     max-height: 0;
     overflow: hidden;
+    opacity: 0.0;
     transition: all 0.5s ease-in-out;
   }
 }
