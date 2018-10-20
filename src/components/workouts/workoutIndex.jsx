@@ -4,6 +4,7 @@ import { getWorkouts, deleteWorkout } from '../../services/workoutService.js';
 import { deleteCompletedExercise } from '../../services/completedExerciseService.js';
 import { getMuscles } from '../../services/muscleService.js';
 import { compareDates } from '../../utilities/sortUtility.js';
+import { reformatDate } from '../../utilities/dateUtility.js';
 import './workout.css';
 import Pagination from '../reusable/pagination';
 import Spinner from '../reusable/spinner';
@@ -134,6 +135,11 @@ class WorkoutIndex extends Component {
 
     return (
       <Spinner ready={this.state.api_response}>
+        <h4>
+          {current_workout.date ?
+            `Workout Date: ${reformatDate(current_workout.date)}` :
+            `Select a Workout`}
+        </h4>
         <MuscleMap
           current_muscles={this.getSelectedMuscles()}
           onMuscleSelect={() => {}}

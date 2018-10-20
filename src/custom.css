@@ -84,3 +84,7 @@ form {
 .custom-pagination-margin {
   margin-top: 25px;
 }
+
+.custom-hover-cursor:hover {
+  cursor: pointer;
+}

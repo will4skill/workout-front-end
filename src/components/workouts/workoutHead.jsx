@@ -9,7 +9,7 @@ const WorkoutBody = ({ workout, onWorkoutSelect, onWorkoutDelete }) => {
   const url_prefix = `/workouts/${workout._id}`;
   return (
     <div
-      className="card-header"
+      className="card-header custom-hover-cursor"
       onClick={() => onWorkoutSelect(workout)}>
       <div className="">
         <span className="font-weight-bold">{reformatDate(workout.date)} </span>

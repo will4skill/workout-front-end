@@ -78,8 +78,7 @@ class ExerciseIndex extends Component {
               <h4 className="text-capitalize">
                 {this.state.current_muscle.name ?
                   "Selected Muscle: " + this.state.current_muscle.name :
-                  "Select a muscle"
-                }
+                  "Select a muscle"}
               </h4>
               <MuscleMap
                 current_muscles={[this.state.current_muscle.name]}
