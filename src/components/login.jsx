@@ -67,7 +67,7 @@ class Login extends Component {
       const { user } = this.state;
       await login(user.email, user.password);
       const { state } = this.props.location;
-      window.location = state ? state.from.pathname : "/";
+      window.location = state ? state.from.pathname : "/users/me/show";;
     } catch(exception) {
       if (exception.response && exception.response.status === 400){
         alert(exception.response.data);

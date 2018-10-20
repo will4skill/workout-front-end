@@ -68,7 +68,7 @@ class UserNew extends Component {
     try {
       const response = await saveUser(this.state.user);
       loginWithJwt(response.headers["x-auth-token"]);
-      window.location = '/';
+      window.location = "/users/me/show";
     } catch (exception) {
       if (exception.response && exception.response.status === 400) {
         alert(exception.response.data);
