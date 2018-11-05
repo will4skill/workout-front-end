@@ -6,7 +6,7 @@ const ProtectedRoute = ({ redirect_path, admin_required, component: Component, .
   const user = getCurrentUser();
   const test_user = !!admin_required ? user.admin : user;
   if (!!admin_required && !test_user) {
-    alert("Access Denied, Amin Only");
+    alert("Access Denied, Admin Only");
   }
 
   return (
