@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { reformatDate } from '../../utilities/dateUtility.js';
 
-const WorkoutBody = ({ workout, onWorkoutSelect, onWorkoutDelete }) => {
+const WorkoutHead = ({ workout, onWorkoutSelect, onWorkoutDelete }) => {
   const btn = "btn btn-";
   const fa = "fa fa-";
   const url_prefix = `/workouts/${workout._id}`;
@@ -32,10 +32,10 @@ const WorkoutBody = ({ workout, onWorkoutSelect, onWorkoutDelete }) => {
   );
 };
 
-WorkoutBody.propTypes = {
+WorkoutHead.propTypes = {
   workout: PropTypes.object.isRequired,
   onWorkoutSelect: PropTypes.func.isRequired,
   onWorkoutDelete: PropTypes.func.isRequired,
 };
 
-export default WorkoutBody;
+export default WorkoutHead;
