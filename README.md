@@ -32,6 +32,7 @@ Additional resources that helped me:
 4. ``` $ npm i ``` # install the packages listed in package.json
 5. ``` $ npm start ``` # start server
 6. Done. If you have also setup the corresponding Workout API project, you can navigate to http://localhost:3000/ to test the full project.
+7. ``` $ npm update [name]``` # update packages
 
 ## Routes and Components
 ### Login/Logout
